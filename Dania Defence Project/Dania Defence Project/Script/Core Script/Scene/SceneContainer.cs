@@ -15,22 +15,12 @@ namespace Dania_Defence_Project
 
 		public void Initialize()
 		{
-			Test();
+			MakeScenes();
 		}
 
-		public void Test()
+		public void MakeScenes()
 		{
-			TestScene01 Test01 = new TestScene01
-			{
-				Name = "Test01"
-			};
-			Scenes.Add(Test01);
 
-            TestScene01 Test02 = new TestScene01
-            {
-				Name = "Test02"
-			};
-			Scenes.Add(Test02);
 		}
 	}
 }
