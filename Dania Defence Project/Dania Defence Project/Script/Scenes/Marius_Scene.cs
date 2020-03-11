@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +7,21 @@ using System.Threading.Tasks;
 
 namespace Dania_Defence_Project
 {
-	public class TemplateObject : GameObject
+	public class Marius_Scene : Scene
 	{
-		public Transform object01;
-		public Transform object02;
-
-		public override void Awake()
+		public override void Initialize()
 		{
-			base.Awake();
+			base.Initialize();
 		}
 
-		public override void Start()
+		public override void OnSwitchToThisScene()
 		{
-			base.Start();
+			base.OnSwitchToThisScene();
+		}
+
+		public override void OnSwitchAwayFromThisScene()
+		{
+			base.OnSwitchAwayFromThisScene();
 		}
 
 		public override void Update()
