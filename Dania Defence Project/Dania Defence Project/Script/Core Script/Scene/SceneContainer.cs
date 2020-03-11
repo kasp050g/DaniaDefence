@@ -20,41 +20,17 @@ namespace Dania_Defence_Project
 
 		public void Test()
 		{
-			PickScene pickScene = new PickScene
+			TestScene01 Test01 = new TestScene01
 			{
-				Name = "Pick Scene"
+				Name = "Test01"
 			};
-			Scenes.Add(pickScene);
+			Scenes.Add(Test01);
 
-			MainScene mainScene = new MainScene
-			{
-				Name = "Main Scene"
+            TestScene01 Test02 = new TestScene01
+            {
+				Name = "Test02"
 			};
-			Scenes.Add(mainScene);
-
-			Kasper_Scene kasper_Scene = new Kasper_Scene
-			{
-				Name = "Kasper Scene"
-			};
-			Scenes.Add(kasper_Scene);
-
-			Casper_Scene casper_Scene = new Casper_Scene
-			{
-				Name = "Casper Scene"
-			};
-			Scenes.Add(casper_Scene);
-
-			Nicolai_Scene nicolai_Scene = new Nicolai_Scene
-			{
-				Name = "Nicolai Scene"
-			};
-			Scenes.Add(nicolai_Scene);
-
-			Marius_Scene marius_Scene = new Marius_Scene
-			{
-				Name = "Marius Scene"
-			};
-			Scenes.Add(marius_Scene);
+			Scenes.Add(Test02);
 		}
 	}
 }

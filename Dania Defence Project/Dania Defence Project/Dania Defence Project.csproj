@@ -66,12 +66,11 @@
     <Compile Include="Script\Core Script\Static Component\GraphicsSetting.cs" />
     <Compile Include="Script\Core Script\Static Component\Input.cs" />
     <Compile Include="Script\Core Script\Static Component\Time.cs" />
-    <Compile Include="Script\Scenes\Casper_Scene.cs" />
-    <Compile Include="Script\Scenes\Kasper_Scene.cs" />
-    <Compile Include="Script\Scenes\MainScene.cs" />
-    <Compile Include="Script\Scenes\Marius_Scene.cs" />
-    <Compile Include="Script\Scenes\Nicolai_Scene.cs" />
-    <Compile Include="Script\Scenes\PickScene.cs" />
+    <Compile Include="Script\Scenes\TestScene01.cs" />
+    <Compile Include="Script\Test Components\JamenTest.cs" />
+    <Compile Include="Script\Test Components\NewImageTest.cs" />
+    <Compile Include="Script\Test Components\PlayerTest.cs" />
+    <Compile Include="Script\Test Components\TemplateObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -91,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Script\Components\" />
-    <Folder Include="Script\Test Components\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
