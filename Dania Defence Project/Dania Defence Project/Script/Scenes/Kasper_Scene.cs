@@ -12,6 +12,7 @@ namespace Dania_Defence_Project
 		public override void Initialize()
 		{
 			base.Initialize();
+			string jamen = "asd";
 		}
 
 		public override void OnSwitchToThisScene()
