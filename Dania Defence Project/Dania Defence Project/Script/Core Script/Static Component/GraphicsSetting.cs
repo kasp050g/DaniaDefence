@@ -17,7 +17,7 @@ namespace Dania_Defence_Project
 
 		public static void SetGraphics(GraphicsDeviceManager graphic)
 		{
-			GraphicsSetting.Graphics = graphic;
+			GraphicsSetting.Graphics = graphic;		
 
 			Vector2 newSceneSize = new Vector2
 				(
