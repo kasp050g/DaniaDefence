@@ -66,6 +66,7 @@
     <Compile Include="Script\Core Script\Static Component\GraphicsSetting.cs" />
     <Compile Include="Script\Core Script\Static Component\Input.cs" />
     <Compile Include="Script\Core Script\Static Component\Time.cs" />
+    <Compile Include="Script\Dania Defence Script\Grid Folder\ShowGrid.cs" />
     <Compile Include="Script\Scenes\Casper_Scene.cs" />
     <Compile Include="Script\Scenes\Kasper_Scene.cs" />
     <Compile Include="Script\Scenes\MainScene.cs" />

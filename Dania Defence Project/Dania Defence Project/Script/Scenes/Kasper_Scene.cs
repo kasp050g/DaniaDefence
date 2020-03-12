@@ -12,6 +12,7 @@ namespace Dania_Defence_Project
 		public override void Initialize()
 		{
 			base.Initialize();
+			GridBox();
 		}
 
 		public override void OnSwitchToThisScene()
@@ -32,6 +33,22 @@ namespace Dania_Defence_Project
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw(spriteBatch);
+		}
+
+		public void GridBox()
+		{
+
+			for (int x = 0; x < 100; x++)
+			{
+				for (int y = 0; y < 100; y++)
+				{
+					ShowGrid showGrid = new ShowGrid();
+					showGrid.Transform.Position = new Microsoft.Xna.Framework.Vector2(100 * x, 100 * y);
+					showGrid.Transform.Position -= new Microsoft.Xna.Framework.Vector2(1000, 1000);
+					Instantiate(showGrid);
+				}
+			}
+
 		}
 	}
 }
