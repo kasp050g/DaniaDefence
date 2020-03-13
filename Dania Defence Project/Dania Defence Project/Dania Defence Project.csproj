@@ -49,6 +49,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Script\Core Script\Enum\OriginPositionEnum.cs" />
     <Compile Include="Script\Core Script\GUI Components\GuiButton.cs" />
+    <Compile Include="Script\Core Script\GUI Components\GuiImagePanel.cs" />
+    <Compile Include="Script\Core Script\GUI Components\GuiText.cs" />
     <Compile Include="Script\Core Script\Helper Class\Helper.cs" />
     <Compile Include="Script\Core Script\Main Components\Component.cs" />
     <Compile Include="Script\Core Script\Main Components\GameObject.cs" />

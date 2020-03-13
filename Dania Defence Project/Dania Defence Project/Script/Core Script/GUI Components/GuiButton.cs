@@ -20,7 +20,7 @@ namespace Dania_Defence_Project
         protected Action onClick;
         protected SpriteFont font;
 
-        protected Color hoveringColor = Color.Gray;
+        protected Color isHoveringColor = Color.Gray;
         protected Color fontColor = Color.Black;
         protected Color fontColorIsHovering = Color.Black;
         protected string text;
@@ -36,16 +36,41 @@ namespace Dania_Defence_Project
 
         public Action OnClick { get => onClick; set => onClick = value; }
         public SpriteFont Font { get => font; set => font = value; }
-        public Color HoveringColor { get => hoveringColor; set => hoveringColor = value; }
+        public Color IsHoveringColor { get => isHoveringColor; set => isHoveringColor = value; }
         public Color FontColor { get => fontColor; set => fontColor = value; }
         public Color FontColorIsHovering { get => fontColorIsHovering; set => fontColorIsHovering = value; }
         public string Text { get => text; set => text = value; }
         public Texture2D IsHoveringSprite { get => isHoveringSprite; set => isHoveringSprite = value; }
         public Vector2 FontScale { get => fontScale; set => fontScale = value; }
 
-        #endregion
+		#endregion
 
-        public override void Awake()
+		#region Constructor
+		public GuiButton(Texture2D _sprite, Vector2 _position,Vector2 _scale,float _layerDepth,  OriginPositionEnum _originPositionEnum)
+		{
+			// Button
+			this.sprite = _sprite;
+			this.transform.Position = _position;
+			this.transform.Scale = _scale;
+			this.layerDepth = _layerDepth;
+			this.originPositionEnum = _originPositionEnum;
+		}
+		public GuiButton(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _originPositionEnum, SpriteFont _font, string _text, Vector2 _fontScale)
+		{
+			// Button
+			this.sprite = _sprite;
+			this.transform.Position = _position;
+			this.transform.Scale = _scale;
+			this.layerDepth = _layerDepth;
+			this.originPositionEnum = _originPositionEnum;
+			// Text
+			this.font = _font;
+			this.text = _text;
+			this.FontScale = _fontScale;
+		}
+		#endregion
+
+		public override void Awake()
         {
             if(font == null)
             {
@@ -97,7 +122,7 @@ namespace Dania_Defence_Project
 
                 if (isHovering)
                 {
-                    _color = hoveringColor;
+                    _color = isHoveringColor;
                     _fontColor = fontColorIsHovering;
                     if (isHoveringSprite != null)
                         _sprite = isHoveringSprite;
@@ -139,7 +164,7 @@ namespace Dania_Defence_Project
                         // Color
                         _fontColor,
                         // Rotation
-                        MathHelper.ToRadians(0),
+                        MathHelper.ToRadians(this.transform.Rotation),
                         // Origin
                         Vector2.Zero,
                         // Scale

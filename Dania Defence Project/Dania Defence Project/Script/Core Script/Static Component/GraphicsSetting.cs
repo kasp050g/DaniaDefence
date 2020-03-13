@@ -17,7 +17,10 @@ namespace Dania_Defence_Project
 
 		public static void SetGraphics(GraphicsDeviceManager graphic)
 		{
-			GraphicsSetting.Graphics = graphic;		
+			GraphicsSetting.Graphics = graphic;
+
+			graphics.PreferredBackBufferWidth = 1280;
+			graphics.PreferredBackBufferHeight = 720;
 
 			Vector2 newSceneSize = new Vector2
 				(
