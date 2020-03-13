@@ -19,6 +19,9 @@ namespace Dania_Defence_Project
 		{
 			GraphicsSetting.Graphics = graphic;
 
+			graphics.PreferredBackBufferWidth = 1280;
+			graphics.PreferredBackBufferHeight = 720;
+
 			Vector2 newSceneSize = new Vector2
 				(
 				graphics.PreferredBackBufferWidth,

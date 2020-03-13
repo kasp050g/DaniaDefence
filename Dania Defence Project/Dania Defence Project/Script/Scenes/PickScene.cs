@@ -40,12 +40,27 @@ namespace Dania_Defence_Project
 		{
 			for (int i = 1; i < SceneController.SceneContainer.Scenes.Count; i++)
 			{
-				GuiButton tmp = new GuiButton();
-				tmp.Text = SceneController.SceneContainer.Scenes[i].Name;
-				tmp.Transform.Scale = new Vector2(150,50);
-				tmp.Transform.Position = new Vector2(10, 60 * i);
-				tmp.FontScale = new Vector2(0.4f, 0.4f);
+				GuiButton tmp = new GuiButton(
+					// Texture2D
+					SpriteContainer.sprite["Pixel"],
+					// Position
+					new Vector2(10, 60 * i),
+					// Scale
+					new Vector2(150, 50),
+					// Layer Depth
+					0.9f,
+					// Orgin
+					OriginPositionEnum.BottomLeft,
+					// SpriteFont
+					SpriteContainer.normalFont,
+					// Text
+					SceneController.SceneContainer.Scenes[i].Name,
+					// Font Scale
+					new Vector2(0.4f, 0.4f)
+					);
 
+				// Here we Add the onClick
+				// we tell it to load a new scene
 				int _sceneNumber = i;
 				tmp.OnClick = () =>
 				{					
