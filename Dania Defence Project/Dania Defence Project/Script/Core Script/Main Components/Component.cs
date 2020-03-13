@@ -32,6 +32,7 @@ namespace Dania_Defence_Project
 		{			
 			
 		}
+
 		public virtual void Update()
 		{
 			if (isFirstUpdate)

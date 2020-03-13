@@ -11,6 +11,7 @@ namespace Dania_Defence_Project
 	{
 		public override void Initialize()
 		{
+
 			base.Initialize();
 		}
 
@@ -32,6 +33,11 @@ namespace Dania_Defence_Project
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw(spriteBatch);
+		}
+
+		private void MakeScene()
+		{
+
 		}
 	}
 }
