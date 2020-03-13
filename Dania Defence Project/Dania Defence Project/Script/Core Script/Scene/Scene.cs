@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace Dania_Defence_Project
 		protected bool updateEnabled;
 		protected bool drawEnabled;
 		protected bool isInitialized;
+		protected bool isMouseOverUI = false;
 
 		protected List<Component> components = new List<Component>();
 		protected List<GameObject> gameObjects = new List<GameObject>();
@@ -24,6 +27,8 @@ namespace Dania_Defence_Project
 		public bool UpdateEnabled { get { return updateEnabled; } set { updateEnabled = value; } }
 		public bool DrawEnabled { get { return drawEnabled; } set { drawEnabled = value; } }
 		public List<Component> Components { get { return components; } private set { components = value; } }
+		public List<GameObject> GameObjects { get { return gameObjects; } private set { gameObjects = value; } }
+		public List<GameObject> Guis { get { return guis; } private set { guis = value; } }
 
 		public virtual void Initialize()
 		{
@@ -45,6 +50,8 @@ namespace Dania_Defence_Project
 
 		public virtual void Update()
 		{
+			CheckForGUI();
+
 			foreach (Component component in components)
 			{
 				if (component.IsActive)
@@ -72,6 +79,7 @@ namespace Dania_Defence_Project
 			CallDestroyGameObject();
 			CallInstantiate();
 			SceneController.Camera.Update();
+			isMouseOverUI = false;
 		}
 
 		public virtual void Draw(SpriteBatch spriteBatch)
@@ -95,6 +103,20 @@ namespace Dania_Defence_Project
 				}
 			}
 			spriteBatch.End();
+		}
+
+		public void CheckForGUI()
+		{
+			MouseState currentMouse = Mouse.GetState();
+			var mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
+
+			foreach (GameObject x in Guis)
+			{
+				if ((x is GUI) && mouseRectangle.Intersects((x as GUI).GUImouseBlockCollision))
+				{
+					isMouseOverUI = true;
+				}
+			}
 		}
 
 		#region Instantiate And Destroy
@@ -129,6 +151,7 @@ namespace Dania_Defence_Project
 			// Call Awake
 			List<Component> awakeCall = new List<Component>();
 			awakeCall.AddRange(this.componentsToBeCreated);
+			this.componentsToBeCreated.Clear();
 
 			foreach (Component component in awakeCall)
 			{
@@ -154,9 +177,7 @@ namespace Dania_Defence_Project
 				{
 					components.Add(component);
 				}
-			}
-
-			this.componentsToBeCreated.Clear();
+			}			
 		}
 		/// <summary>
 		/// TODO

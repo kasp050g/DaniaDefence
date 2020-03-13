@@ -56,6 +56,7 @@
     <Compile Include="Script\Core Script\Main Components\GameObject.cs" />
     <Compile Include="Script\Core Script\Main Components\GUI.cs" />
     <Compile Include="Script\Core Script\NeedReName Components\Camera.cs" />
+    <Compile Include="Script\Core Script\NeedReName Components\RtsCamera.cs" />
     <Compile Include="Script\Core Script\NeedReName Components\Transform.cs" />
     <Compile Include="Script\Core Script\NeedReName Components\_Transform.cs" />
     <Compile Include="Script\Core Script\Scene\Scene.cs" />
@@ -69,12 +70,15 @@
     <Compile Include="Script\Core Script\Static Component\Input.cs" />
     <Compile Include="Script\Core Script\Static Component\Time.cs" />
     <Compile Include="Script\Dania Defence Script\Grid Folder\ShowGrid.cs" />
+    <Compile Include="Script\Dania Defence Script\Tile Folder\Tile.cs" />
+    <Compile Include="Script\Dania Defence Script\World Editor\WorldEditor.cs" />
     <Compile Include="Script\Scenes\Casper_Scene.cs" />
     <Compile Include="Script\Scenes\Kasper_Scene.cs" />
     <Compile Include="Script\Scenes\MainScene.cs" />
     <Compile Include="Script\Scenes\Marius_Scene.cs" />
     <Compile Include="Script\Scenes\Nicolai_Scene.cs" />
     <Compile Include="Script\Scenes\PickScene.cs" />
+    <Compile Include="Script\Scenes\WorldEditor_Scene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

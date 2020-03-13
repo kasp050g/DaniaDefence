@@ -10,10 +10,10 @@ namespace Dania_Defence_Project
 	public static class SceneController
 	{
 		private static SceneContainer sceneContainer = new SceneContainer();
-		private static Camera camera = new Camera();
+		private static RtsCamera camera = new RtsCamera();
 		private static Scene currentScene;
 
-		public static Camera Camera { get => camera; set => camera = value; }
+		public static RtsCamera Camera { get => camera; set => camera = value; }
 		public static SceneContainer SceneContainer { get => sceneContainer; set => sceneContainer = value; }
 		public static Scene CurrentScene
 		{
