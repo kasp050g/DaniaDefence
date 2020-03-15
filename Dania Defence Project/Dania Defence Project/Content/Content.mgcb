@@ -10,8 +10,19 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\MyXMLData\bin\Debug\MyXMLData.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin _jamen.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:_jamen.xml
+
+#begin File.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:File.xml
 
 #begin Font/NormalFont.spritefont
 /importer:FontDescriptionImporter
