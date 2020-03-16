@@ -15,6 +15,7 @@ namespace Dania_Defence_Project
 		public WorldEditor(int _sizeOfTile)
 		{
 			this.sizeOfTile = _sizeOfTile;
+
 		}
 		public override void Awake()
 		{
