@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,57 @@ namespace Dania_Defence_Project
 {
 	public class Towers : GameObject
 	{
+		#region Fields
+		public float fireRate;
+		public float currentFireRate;
+		#endregion
+
 		#region Constructor
-		public Towers(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _originPositionEnum)
+		public Towers(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, 
+			OriginPositionEnum _originPositionEnum, float _speed, float _fireRate)
 		{
 			this.sprite = _sprite;
 			this.Transform.Position = _position;
 			this.Transform.Scale = _scale;
 			this.LayerDepth = _layerDepth;
 			this.OriginPositionEnum = _originPositionEnum;
+			this.speed = _speed;
+			this.fireRate = _fireRate;
+		}
+
+		public void Projectile()
+		{
+			Instantiate(new TowerProjectile(
+				//Texture
+				SpriteContainer.sprite["TMP"],
+
+				//Position
+				transform.Position,
+
+				//Layer Depth
+				0.2f,
+
+				//Origin
+				OriginPositionEnum.Mid,
+
+				//Speed
+				this.speed
+				));
+
+			currentFireRate = fireRate;
+		}
+
+		public void MouseInput()
+		{
+			velocity = Vector2.Zero;
+
+			MouseState state = Mouse.GetState();
+
+			//Checks and updates based on the Right Button
+			if (state.RightButton == ButtonState.Pressed && currentFireRate <= 0)
+			{
+				Projectile();
+			}
 		}
 		#endregion
 
@@ -34,6 +78,13 @@ namespace Dania_Defence_Project
 
 		public override void Update()
 		{
+			MouseInput();
+
+			if (currentFireRate > 0)
+			{
+				currentFireRate -= (float)Time.deltaTime;
+			}
+
 			base.Update();
 		}
 
@@ -72,5 +123,6 @@ namespace Dania_Defence_Project
 				);
 		}
 		#endregion
+
 	}
 }

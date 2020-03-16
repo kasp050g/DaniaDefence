@@ -16,6 +16,8 @@ namespace Dania_Defence_Project
 		protected Color color = Color.White;
 		protected float layerDepth = 0;
 		protected Texture2D sprite;
+		protected Vector2 velocity;
+		protected float speed;
 
 		public OriginPositionEnum OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
 		public SpriteEffects SpriteEffects { get => spriteEffects; set => spriteEffects = value; }
@@ -23,6 +25,8 @@ namespace Dania_Defence_Project
 		public Color Color { get => color; set => color = value; }
 		public float LayerDepth { get => layerDepth; set => layerDepth = value; }
 		public Texture2D Sprite { get => sprite; set => sprite = value; }
+		public Vector2 Velocity { get => velocity; set => velocity = value; }
+		public float Speed { get => speed; set => speed = value; }
 
         public virtual Rectangle Rectangle
         {

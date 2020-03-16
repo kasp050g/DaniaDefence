@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,7 @@ namespace Dania_Defence_Project
 {
 	public class Marius_Scene : Scene
 	{
+		#region Scene Nedarving
 		public override void Initialize()
 		{
 			base.Initialize();
@@ -29,7 +29,6 @@ namespace Dania_Defence_Project
 
 		public override void Update()
 		{
-			HandleInput();
 			base.Update();
 		}
 
@@ -37,56 +36,44 @@ namespace Dania_Defence_Project
 		{
 			base.Draw(spriteBatch);
 		}
+		#endregion
 
+		#region Constructors
 		public void TeacherTowers()
 		{
-			Towers towerObjects = new Towers(
+			Towers DennisTower = new Towers(
 				//Texture
-				SpriteContainer.sprite["Mikael"],
+				SpriteContainer.sprite["Dennis"],
 
 				//Position
-				new Vector2(GraphicsSetting.ScreenSize.X / 4, GraphicsSetting.ScreenSize.Y / 4),
+				new Vector2(-320, 180),
 
 				//Scale
-				new Vector2(0.33f, 0.33f),
+				new Vector2(0.25f, 0.25f),
 
 				//Layer Depth
 				0.25f,
 
 				//Origin
-				OriginPositionEnum.Mid);
+				OriginPositionEnum.Mid, 
+				
+				//Speed
+				60f,
 
-			Instantiate(towerObjects);
+				//Fire Rate
+				1f
+				);
+
+			Towers MiloTower = new Towers(SpriteContainer.sprite["Milo"], new Vector2(0, 180), 
+				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.Mid, 300f, 1f);
+
+			Towers MikaelTower = new Towers(SpriteContainer.sprite["Mikael"], new Vector2(360, 180),
+				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.Mid, 600f, 0.33f);
+
+			Instantiate(DennisTower);
+			Instantiate(MiloTower);
+			Instantiate(MikaelTower);
 		}
-
-		public void Projectile()
-		{
-			Instantiate(new TowerProjectile(
-				//Texture
-				SpriteContainer.sprite["TMP"],
-
-				//Position
-				new Vector2(0.25f, 0.33f),
-
-				//Scale
-				new Vector2(0.75f, 0.75f),
-
-				//Layer Depth
-				0.2f,
-
-				//Origin
-				OriginPositionEnum.Mid
-				));
-		}
-
-		public void HandleInput()
-		{
-			MouseState state = Mouse.GetState();
-
-			if(state.RightButton == ButtonState.Pressed)
-			{
-				Projectile();
-			}
-		}
+		#endregion
 	}
 }
