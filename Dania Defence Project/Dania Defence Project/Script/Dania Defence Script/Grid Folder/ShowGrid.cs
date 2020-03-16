@@ -9,13 +9,7 @@ using System.Threading.Tasks;
 namespace Dania_Defence_Project
 {
 	public class ShowGrid : GUI
-	{
-		public int gridSize = 100;
-
-		public ShowGrid (int _gridSzie)
-		{
-			this.gridSize = _gridSzie;
-		}
+	{			   
 		public override void Awake()
 		{
 			base.Awake();
@@ -49,7 +43,7 @@ namespace Dania_Defence_Project
 				// Origin
 				this.transform.Origin,
 				// Scale
-				new Vector2(gridSize, 1),
+				new Vector2(100,1),
 				// SpriteEffects
 				this.spriteEffects,
 				// LayerDepth
@@ -69,7 +63,7 @@ namespace Dania_Defence_Project
 				// Origin
 				this.transform.Origin,
 				// Scale
-				new Vector2(1, gridSize),
+				new Vector2(1, 100),
 				// SpriteEffects
 				this.spriteEffects,
 				// LayerDepth
