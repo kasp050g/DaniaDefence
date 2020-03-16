@@ -18,10 +18,6 @@ namespace Dania_Defence_Project
             }
         }
 
-        public override void Start()
-        {
-            base.Start();
-        }
 
         
     }
