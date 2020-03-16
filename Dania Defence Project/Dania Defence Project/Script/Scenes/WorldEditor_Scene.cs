@@ -36,9 +36,6 @@ namespace Dania_Defence_Project
 		{
 			base.Draw(spriteBatch);
 
-
-
-			// Test Show how many Tiles in secne
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
 			tielsNameShow.Clear();
