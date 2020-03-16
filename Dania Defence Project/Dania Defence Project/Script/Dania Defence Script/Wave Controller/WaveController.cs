@@ -11,6 +11,7 @@ namespace Dania_Defence_Project
     public class WaveController : Component
     {
 
+        Unit unit = new Unit();
 
 
         WaveContainer waveContainer = new WaveContainer();
@@ -40,9 +41,8 @@ namespace Dania_Defence_Project
         public override void Start()
         {
             base.Start();
-            Unit unit = new Unit();
 
-            
+            unit.onUnitGraduation += OnUnitGraduation;
         }
 
         public override void Update()
@@ -85,9 +85,9 @@ namespace Dania_Defence_Project
 
         }
 
-        public void OnUnitDeath()
+        public void OnUnitGraduation()
         {
-            
+            unit.UnitGraduation();
         }
 
         

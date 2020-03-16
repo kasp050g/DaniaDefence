@@ -11,6 +11,9 @@ namespace Dania_Defence_Project
 
     public class Unit: GameObject
     {
+        public event Action onUnitGraduation;
+
+
         Stat knowlegde = new Stat(); // henter knowlegde værdien fra stat classen
         Stat movementspeed = new Stat(); // henter movementspeed værdien fra stat classen
         bool isalive = true; // en tjekker for om en unit er i live
@@ -28,6 +31,7 @@ namespace Dania_Defence_Project
             if (knowlegde.CurrentValue >= knowlegde.MaxValue)
             {
                 isalive = false;
+                onUnitGraduation();
             }
         }
 
@@ -46,6 +50,15 @@ namespace Dania_Defence_Project
         {
             base.Draw(spriteBatch);
 
+        }
+
+        public void UnitGraduation()
+        {
+            if (onUnitGraduation != null)
+            {
+                onUnitGraduation();
+                Destroy(this);
+            }
         }
 
 
