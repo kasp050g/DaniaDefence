@@ -14,6 +14,12 @@ namespace Dania_Defence_Project
         Stat knowlegde = new Stat(); // henter knowlegde værdien fra stat classen
         Stat movementspeed = new Stat(); // henter movementspeed værdien fra stat classen
         bool isalive = true; // en tjekker for om en unit er i live
+        Stat armor = new Stat();
+        Stat slow = new Stat();
+        Stat knowlegdebar = new Stat();
+        AStar destination = new AStar();
+        AStar chechdestination = new AStar();
+
 
         public override void Awake() // dette er kode der køre inden spillet går i gang
         {

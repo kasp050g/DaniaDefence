@@ -10,6 +10,8 @@ namespace Dania_Defence_Project
     {
         private float currentValue; // den nuværende værdi som uniten har
         private float maxValue; // den maximale værdi som unit kan få (i spillet "dør" uniten vis den når denne værdi)
+        private float armorValue;
+        bool isSlowed;
 
         public float CurrentValue { get => currentValue;} //dette gør at den kan hente værdien.
 
