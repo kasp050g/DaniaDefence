@@ -12,6 +12,7 @@ namespace Dania_Defence_Project
 		public override void Awake()
 		{
 			base.Awake();
+
 		}
 		public override void Start()
 		{

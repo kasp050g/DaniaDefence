@@ -15,6 +15,7 @@ namespace Dania_Defence_Project
 		public ShowGrid (int _gridSzie)
 		{
 			this.gridSize = _gridSzie;
+
 		}
 		public override void Awake()
 		{
