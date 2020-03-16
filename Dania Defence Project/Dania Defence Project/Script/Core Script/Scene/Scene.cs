@@ -30,6 +30,8 @@ namespace Dania_Defence_Project
 		public List<GameObject> GameObjects { get { return gameObjects; } private set { gameObjects = value; } }
 		public List<GameObject> Guis { get { return guis; } private set { guis = value; } }
 
+		public bool IsMouseOverUI { get => isMouseOverUI; set => isMouseOverUI = value; }
+
 		public virtual void Initialize()
 		{
 			isInitialized = true;
@@ -79,7 +81,7 @@ namespace Dania_Defence_Project
 			CallDestroyGameObject();
 			CallInstantiate();
 			SceneController.Camera.Update();
-			isMouseOverUI = false;
+			IsMouseOverUI = false;
 		}
 
 		public virtual void Draw(SpriteBatch spriteBatch)
@@ -108,13 +110,13 @@ namespace Dania_Defence_Project
 		public void CheckForGUI()
 		{
 			MouseState currentMouse = Mouse.GetState();
-			var mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
+			Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
 
 			foreach (GameObject x in Guis)
 			{
 				if ((x is GUI) && mouseRectangle.Intersects((x as GUI).GUImouseBlockCollision))
 				{
-					isMouseOverUI = true;
+					IsMouseOverUI = true;
 				}
 			}
 		}
@@ -187,8 +189,26 @@ namespace Dania_Defence_Project
 		{
 			// Remove GameObjects
 			foreach (Component component in this.componentsToBeDestroyed)
-			{
-				this.components.Remove(component);
+			{				
+				if (component is GameObject && component is GUI == false)
+				{
+					gameObjects.Remove(component as GameObject);
+				}
+				else if (component is GUI)
+				{
+					if ((component as GUI).IsWorldGui == true)
+					{
+						gameObjects.Remove(component as GameObject);
+					}
+					else
+					{
+						guis.Remove(component as GUI);
+					}
+				}
+				else
+				{
+					components.Remove(component);
+				}
 			}
 			this.componentsToBeDestroyed.Clear();
 		}

@@ -94,6 +94,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Texture\Test\Pixel.png" />
+    <Content Include="Content\Texture\Tower\Tower_Dennis.png" />
+    <Content Include="Content\Texture\Tower\Tower_Jonathan.png" />
+    <Content Include="Content\Texture\Tower\Tower_Kenneth.png" />
+    <Content Include="Content\Texture\Tower\Tower_Mikael.png" />
+    <Content Include="Content\Texture\Tower\Tower_Milo.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

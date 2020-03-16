@@ -10,19 +10,8 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\MyXMLData\bin\Debug\MyXMLData.dll
 
 #---------------------------------- Content ---------------------------------#
-
-#begin _jamen.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:_jamen.xml
-
-#begin File.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:File.xml
 
 #begin Font/NormalFont.spritefont
 /importer:FontDescriptionImporter
@@ -42,4 +31,64 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Texture/Test/Pixel.png
+
+#begin Texture/Tower/Tower_Dennis.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Texture/Tower/Tower_Dennis.png
+
+#begin Texture/Tower/Tower_Jonathan.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Texture/Tower/Tower_Jonathan.png
+
+#begin Texture/Tower/Tower_Kenneth.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Texture/Tower/Tower_Kenneth.png
+
+#begin Texture/Tower/Tower_Mikael.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Texture/Tower/Tower_Mikael.png
+
+#begin Texture/Tower/Tower_Milo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Texture/Tower/Tower_Milo.png
 

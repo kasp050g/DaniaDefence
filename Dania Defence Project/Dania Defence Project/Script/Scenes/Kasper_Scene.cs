@@ -164,7 +164,7 @@ namespace Dania_Defence_Project
 			{
 				for (int y = 0; y < 100; y++)
 				{
-					ShowGrid showGrid = new ShowGrid();
+					ShowGrid showGrid = new ShowGrid(100);
 					showGrid.Transform.Position = new Vector2(100 * x, 100 * y);
 					showGrid.Transform.Position -= new Vector2(1000, 1000);
 					Instantiate(showGrid);
