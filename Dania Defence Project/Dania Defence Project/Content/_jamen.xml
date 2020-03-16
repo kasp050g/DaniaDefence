@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:MyXMLData="MyXMLData">
-  <Asset Type="MyXMLData:MyLevel">
-    <LevelName>heyhey</LevelName>
-    <MaxEnemies>12</MaxEnemies>
-    <Position>1231 12325</Position>
-  </Asset>
-</XnaContent>
