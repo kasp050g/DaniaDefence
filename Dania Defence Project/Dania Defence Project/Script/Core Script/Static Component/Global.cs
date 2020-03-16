@@ -15,6 +15,7 @@ namespace Dania_Defence_Project
 		{
 			SpriteContainer.LoadContent(content);
 			AudioContainer.LoadContent(content);
+            XmlContainer.LoadContent(content);
 		}
 
 		public static void Initialize()
