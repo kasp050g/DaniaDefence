@@ -20,12 +20,6 @@ namespace Dania_Defence_Project
 
 		public void MakeScenes()
 		{
-			//WorldEditor_Scene worldEditor_Scene1 = new WorldEditor_Scene
-			//{
-			//	Name = "World Editor Scene1"
-			//};
-			//Scenes.Add(worldEditor_Scene1);
-
 			PickScene pickScene = new PickScene
 			{
 				Name = "Pick Scene"
@@ -61,12 +55,6 @@ namespace Dania_Defence_Project
 				Name = "Marius Scene"
 			};
 			Scenes.Add(marius_Scene);
-
-			WorldEditor_Scene worldEditor_Scene = new WorldEditor_Scene
-			{
-				Name = "World Editor Scene"
-			};
-			Scenes.Add(worldEditor_Scene);
 		}
 	}
 }

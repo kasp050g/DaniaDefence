@@ -21,12 +21,12 @@ namespace Dania_Defence_Project
 
             // Sole Sprite
             AddSprite(content.Load<Texture2D>("Texture/Test/Pixel"), "Pixel");
-			// Towers
-            AddSprite(content.Load<Texture2D>("Texture/Tower/Tower_Dennis"), "Tower_Dennis");
-            AddSprite(content.Load<Texture2D>("Texture/Tower/Tower_Jonathan"), "Tower_Jonathan");
-            AddSprite(content.Load<Texture2D>("Texture/Tower/Tower_Kenneth"), "Tower_Kenneth");
-            AddSprite(content.Load<Texture2D>("Texture/Tower/Tower_Mikael"), "Tower_Mikael");
-            AddSprite(content.Load<Texture2D>("Texture/Tower/Tower_Milo"), "Tower_Milo");
+			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Mikael"), "Mikael");
+			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Milo"), "Milo");
+			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Dennis"), "Dennis");
+			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Kenneth"), "Kenneth");
+			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Jonathan"), "Jonathan");
+			AddSprite(content.Load<Texture2D>("Texture/Towers/TowerProjectileTMP"), "TMP");
 
 			// List of Sprite
 			AddSpriteList(new List<Texture2D>(){
