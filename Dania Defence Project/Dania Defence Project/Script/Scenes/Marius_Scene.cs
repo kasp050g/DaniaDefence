@@ -64,6 +64,7 @@ namespace Dania_Defence_Project
 				1f
 				);
 
+			//Gets Towers by Sprite name, position, scale, layer depth, origin point, projectile speed and fire rate
 			Towers MiloTower = new Towers(SpriteContainer.sprite["Milo"], new Vector2(0, 180), 
 				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.Mid, 300f, 1f);
 

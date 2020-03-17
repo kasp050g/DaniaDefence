@@ -55,10 +55,8 @@ namespace Dania_Defence_Project
 		{
 			velocity = Vector2.Zero;
 
-			MouseState state = Mouse.GetState();
-
 			//Checks and updates based on the Right Button
-			if (state.RightButton == ButtonState.Pressed && currentFireRate <= 0)
+			if (currentFireRate <= 0)
 			{
 				Projectile();
 			}
