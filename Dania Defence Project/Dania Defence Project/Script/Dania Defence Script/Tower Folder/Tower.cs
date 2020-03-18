@@ -14,6 +14,10 @@ namespace Dania_Defence_Project
 		#region Fields
 		public float fireRate;
 		public float currentFireRate;
+
+		public float range = 200;
+
+		Vector2 myTarget;
 		#endregion
 
 		#region Constructor
@@ -55,11 +59,28 @@ namespace Dania_Defence_Project
 		{
 			velocity = Vector2.Zero;
 
-			//Checks and updates based on the Right Button
-			if (currentFireRate <= 0)
+			if(Vector2.Distance(transform.Position, myTarget) <= range)
 			{
-				Projectile();
+				//Checks and updates based on the Right Button
+				if (currentFireRate <= 0)
+				{
+					Projectile();
+				}
 			}
+		}
+
+		public void FindTarget()
+		{
+			MouseState state = Mouse.GetState();
+
+			var mouseX = state.Position.X;
+			var mouseY = state.Position.Y;
+
+			Vector2 newPosition = new Vector2(mouseX, mouseY);
+
+			Vector2 worldPosition = Vector2.Transform(newPosition, Matrix.Invert(SceneController.Camera.Transform));
+
+			myTarget = worldPosition;
 		}
 		#endregion
 
@@ -77,6 +98,8 @@ namespace Dania_Defence_Project
 		public override void Update()
 		{
 			MouseInput();
+
+			FindTarget();
 
 			if (currentFireRate > 0)
 			{

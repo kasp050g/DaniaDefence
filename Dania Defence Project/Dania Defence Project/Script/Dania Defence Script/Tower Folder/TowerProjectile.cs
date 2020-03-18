@@ -14,12 +14,14 @@ namespace Dania_Defence_Project
 		public float rotationVelocity = 3f;
 		public float LinearVelocity = 4f;
 
+		public Vector2 myTarget;
+
 		#region Constructor
 		public TowerProjectile(Texture2D _sprite, Vector2 _position, float _layerDepth, 
 			OriginPositionEnum _originPositionEnum, float _speed)
 		{
 			this.sprite = _sprite;
-			this.Transform.Position = new Vector2(_position.X, _position.Y - 150);
+			this.Transform.Position = new Vector2(_position.X, _position.Y - 100);
 			this.layerDepth = _layerDepth;
 			this.OriginPositionEnum = _originPositionEnum;
 			this.speed = _speed;
@@ -38,22 +40,31 @@ namespace Dania_Defence_Project
 
 			MouseState state = Mouse.GetState();
 
-			if(transform.Position.X < state.X)
+			var mouseX = state.Position.X;
+			var mouseY = state.Position.Y;
+
+			Vector2 newPosition = new Vector2(mouseX, mouseY);
+
+			Vector2 worldPosition = Vector2.Transform(newPosition, Matrix.Invert(SceneController.Camera.Transform));
+
+			myTarget = worldPosition;
+
+			if(transform.Position.X < worldPosition.X)
 			{
 				tmpDirection += new Vector2(1, 0);
 			}
-
-			if (transform.Position.X > state.X)
+		
+			if (transform.Position.X > worldPosition.X)
 			{
 				tmpDirection += new Vector2(-1, 0);
 			}
 
-			if(transform.Position.Y < state.Y)
+			if(transform.Position.Y < worldPosition.Y)
 			{
 				tmpDirection += new Vector2(0, 1);
 			}
 
-			if (transform.Position.Y > state.Y)
+			if (transform.Position.Y > worldPosition.Y)
 			{
 				tmpDirection += new Vector2(0, -1);
 			}
@@ -61,6 +72,32 @@ namespace Dania_Defence_Project
 			tmpDirection.Normalize();
 
 			velocity = tmpDirection;
+		}
+
+		public static float CalculateAngleBetweenPositions(Vector2 fromPosition, Vector2 toPosition)
+		{
+			Vector2 vectorTowardsToVector = toPosition - fromPosition;
+			float distance = vectorTowardsToVector.Length();
+			if (distance > 0)
+			{
+				float dot = Vector2.Dot(
+					new Vector2(1, 0), // Vector point right
+					Vector2.Normalize(vectorTowardsToVector) // Vector pointing towards destination
+				);
+
+				float degrees = MathHelper.ToDegrees((float)Math.Acos(dot));
+
+				if (vectorTowardsToVector.Y < 0)
+				{
+					degrees = 180 + (180 - degrees);
+				}
+
+				return degrees;
+			}
+			else
+			{
+				return 0;
+			}
 		}
 		#endregion
 
@@ -79,6 +116,10 @@ namespace Dania_Defence_Project
 		{
 			UpdateProjectile();
 			ProjectileMovement();
+
+			float angle1 = Helper.CalculateAngleBetweenPositions(transform.Position, myTarget);
+
+			transform.Rotation = angle1 - 90;
 
 			base.Update();
 		}

@@ -55,7 +55,7 @@ namespace Dania_Defence_Project
 				0.25f,
 
 				//Origin
-				OriginPositionEnum.Mid, 
+				OriginPositionEnum.BottomMid, 
 				
 				//Speed
 				60f,
@@ -66,10 +66,10 @@ namespace Dania_Defence_Project
 
 			//Gets Towers by Sprite name, position, scale, layer depth, origin point, projectile speed and fire rate
 			Towers MiloTower = new Towers(SpriteContainer.sprite["Milo"], new Vector2(0, 180), 
-				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.Mid, 300f, 1f);
+				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.BottomMid, 150f, 1f);
 
 			Towers MikaelTower = new Towers(SpriteContainer.sprite["Mikael"], new Vector2(360, 180),
-				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.Mid, 600f, 0.33f);
+				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.BottomMid, 300f, 0.33f);
 
 			Instantiate(DennisTower);
 			Instantiate(MiloTower);
