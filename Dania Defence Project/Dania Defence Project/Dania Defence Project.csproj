@@ -94,6 +94,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Texture\Test\Pixel.png" />
+    <Content Include="Content\Texture\Towers\Tower_Dennis.png" />
+    <Content Include="Content\Texture\Towers\Tower_Jonathan.png" />
+    <Content Include="Content\Texture\Towers\Tower_Kenneth.png" />
+    <Content Include="Content\Texture\Towers\Tower_Mikael.png" />
+    <Content Include="Content\Texture\Towers\Tower_Milo.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +107,7 @@
     <None Include="Content\Font\NormalFont.spritefont" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\XML\" />
     <Folder Include="Script\Components\" />
   </ItemGroup>
   <ItemGroup>

@@ -87,16 +87,24 @@ namespace Dania_Defence_Project
 
 		public void MadeGrid()
 		{
-			for (int x = 0; x < 100; x++)
+            int GridNumber = 50;
+			for (int x = 0; x < GridNumber; x++)
 			{
-				for (int y = 0; y < 100; y++)
+				for (int y = 0; y < GridNumber; y++)
 				{
 					ShowGrid showGrid = new ShowGrid(sizeOfTile);
 					showGrid.LayerDepth = 0.99f;
 					showGrid.Transform.Position = new Vector2(sizeOfTile * x, sizeOfTile * y);
-					showGrid.Transform.Position -= new Vector2(sizeOfTile * 100 / 2, sizeOfTile * 100 / 2);
+					showGrid.Transform.Position -= new Vector2(sizeOfTile * GridNumber / 2, sizeOfTile * GridNumber / 2);
 					Instantiate(showGrid);
-				}
+
+                    Tile tile = new Tile();
+                    tile.Transform.Scale = new Vector2(sizeOfTile, sizeOfTile);
+                    tile.Transform.Position = new Vector2(sizeOfTile * x, sizeOfTile * y);
+                    tile.Transform.Position -= new Vector2(sizeOfTile * GridNumber / 2, sizeOfTile * GridNumber / 2);
+                    tile.Color = Color.ForestGreen;
+                    Instantiate(tile);
+                }
 			}
 		}
 	}
