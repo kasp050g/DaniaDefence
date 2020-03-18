@@ -75,7 +75,7 @@ namespace Dania_Defence_Project
 
 			if (Input.GetKey(Keys.LeftShift))
 			{
-				newMove *= 10;
+				newMove *= 3;
 			}
 
 			Position += newMove * moveSpeed * Time.deltaTime;

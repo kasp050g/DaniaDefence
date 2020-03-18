@@ -7,17 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using MyXMLData;
 
 namespace Dania_Defence_Project
 {
 	public class Kasper_Scene : Scene
 	{
-		public override void Initialize()
+        public int sizeOfTile = 75;
+        public override void Initialize()
 		{
 			base.Initialize();
-			GridBox();
+            MadeGrid();
 			MakeGameGui();
-
+            Instantiate(new SetTowers(sizeOfTile));
         }
 
 		public override void OnSwitchToThisScene()
@@ -158,18 +160,115 @@ namespace Dania_Defence_Project
 			#endregion
 		}
 
-		public void GridBox()
-		{
-			for (int x = 0; x < 100; x++)
-			{
-				for (int y = 0; y < 100; y++)
-				{
-					ShowGrid showGrid = new ShowGrid(100);
-					showGrid.Transform.Position = new Vector2(100 * x, 100 * y);
-					showGrid.Transform.Position -= new Vector2(1000, 1000);
-					Instantiate(showGrid);
-				}
-			}
-		}
-	}
+        public void MadeGrid()
+        {
+            int GridNumber = 25;
+            for (int x = 0; x < GridNumber; x++)
+            {
+                for (int y = 0; y < GridNumber; y++)
+                {
+                    Tile tile = new Tile(sizeOfTile);
+                    tile.Transform.Scale = new Vector2(sizeOfTile, sizeOfTile);
+                    tile.Transform.Position = new Vector2(sizeOfTile * x, sizeOfTile * y);
+                    tile.Transform.Position -= new Vector2(sizeOfTile * (GridNumber / 2), sizeOfTile * (GridNumber / 2));
+                    tile.Color = Color.ForestGreen;
+                    tile.LayerDepth = 0.01f;
+                    if (tile.Transform.Position == new Vector2(0, 0))
+                    {
+                        tile.TileType = TileTypeEnum.Center;
+                        tile.Color = Color.MediumVioletRed;
+                    }
+                    if (tile.Transform.Position == new Vector2(-sizeOfTile * 10, 0))
+                    {
+                        tile.TileType = TileTypeEnum.Spawn;
+                        tile.Color = Color.Red;
+                    }
+                    BlockTile(tile);
+                    Instantiate(tile);
+                }
+            }
+        }
+
+        public void BlockTile(Tile _tile)
+        {
+            // Left Wall
+            BlockTileMader(_tile, 12, 0);
+            BlockTileMader(_tile, 12, -5);
+            BlockTileMader(_tile, 12, -4);
+            BlockTileMader(_tile, 12, -3);
+            BlockTileMader(_tile, 12, -2);
+            BlockTileMader(_tile, 12, -1);
+            BlockTileMader(_tile, 12, 5);
+            BlockTileMader(_tile, 12, 4);
+            BlockTileMader(_tile, 12, 3);
+            BlockTileMader(_tile, 12, 2);
+            BlockTileMader(_tile, 12, 1);
+
+            // Rigth Wall
+            BlockTileMader(_tile, -9, 0);
+            BlockTileMader(_tile, -9, -5);
+            BlockTileMader(_tile, -9, -4);
+            BlockTileMader(_tile, -9, -3);
+            BlockTileMader(_tile, -9, -2);
+            BlockTileMader(_tile, -9, -1);
+            BlockTileMader(_tile, -9, 5);
+            BlockTileMader(_tile, -9, 4);
+            BlockTileMader(_tile, -9, 3);
+            BlockTileMader(_tile, -9, 2);
+            BlockTileMader(_tile, -9, 1);
+
+            // Buttom Wall
+            BlockTileMader(_tile, 11, 5);
+            BlockTileMader(_tile, 10, 5);
+            BlockTileMader(_tile, 9, 5);
+            BlockTileMader(_tile, 8, 5);
+            BlockTileMader(_tile, 7, 5);
+            BlockTileMader(_tile, 6, 5);
+            BlockTileMader(_tile, 5, 5);
+            BlockTileMader(_tile, 4, 5);
+            BlockTileMader(_tile, 3, 5);
+            BlockTileMader(_tile, 2, 5);
+            BlockTileMader(_tile, 1, 5);
+            BlockTileMader(_tile, 0, 5);
+            BlockTileMader(_tile, -1, 5);
+            BlockTileMader(_tile, -2, 5);
+            BlockTileMader(_tile, -3, 5);
+            BlockTileMader(_tile, -4, 5);
+            BlockTileMader(_tile, -5, 5);
+            BlockTileMader(_tile, -6, 5);
+            BlockTileMader(_tile, -7, 5);
+            BlockTileMader(_tile, -8, 5);
+            BlockTileMader(_tile, -9, 5);
+
+            // Top Wall
+            BlockTileMader(_tile, 11, -5);
+            BlockTileMader(_tile, 10, -5);
+            BlockTileMader(_tile, 9, -5);
+            BlockTileMader(_tile, 8, -5);
+            BlockTileMader(_tile, 7, -5);
+            BlockTileMader(_tile, 6, -5);
+            BlockTileMader(_tile, 5, -5);
+            BlockTileMader(_tile, 4, -5);
+            BlockTileMader(_tile, 3, -5);
+            BlockTileMader(_tile, 2, -5);
+            BlockTileMader(_tile, 1, -5);
+            BlockTileMader(_tile, 0, -5);
+            BlockTileMader(_tile, -1, -5);
+            BlockTileMader(_tile, -2, -5);
+            BlockTileMader(_tile, -3, -5);
+            BlockTileMader(_tile, -4, -5);
+            BlockTileMader(_tile, -5, -5);
+            BlockTileMader(_tile, -6, -5);
+            BlockTileMader(_tile, -7, -5);
+            BlockTileMader(_tile, -8, -5);
+            BlockTileMader(_tile, -9, -5);
+        }
+        public void BlockTileMader(Tile _tile,int _x,int _y)
+        {
+            if (_tile.Transform.Position == new Vector2(-sizeOfTile * _x, -sizeOfTile * _y))
+            {
+                _tile.TileType = TileTypeEnum.Block;
+            }
+        }
+    }
 }

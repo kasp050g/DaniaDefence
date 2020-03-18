@@ -15,7 +15,6 @@ namespace Dania_Defence_Project
 		public WorldEditor(int _sizeOfTile)
 		{
 			this.sizeOfTile = _sizeOfTile;
-
 		}
 		public override void Awake()
 		{
@@ -39,19 +38,13 @@ namespace Dania_Defence_Project
 		{
 			if (Input.GetMouseButtonDown(MyMouseButtonsEnum.LeftButton) && !MyScene.IsMouseOverUI)
 			{
-				Tile gameObject = new Tile();
-				gameObject.Transform.Position = mouseTile.Transform.Position;
-				gameObject.Transform.Scale = mouseTile.Transform.Scale;
-				gameObject.Color = Color.Red;
-				gameObject.LayerDepth = 0.1f;
 				foreach (GameObject item in myScene.GameObjects)
 				{
-					if (item is Tile == true && item.Transform.Position == gameObject.Transform.Position)
+					if (item is Tile == true && item.Transform.Position == mouseTile.Transform.Position)
 					{
-						Destroy(item);
+                        (item as Tile).ChangeTile(TileTypeEnum.Tower);
 					}
 				}
-				Instantiate(gameObject);
 			}
 			if (Input.GetMouseButtonDown(MyMouseButtonsEnum.RightButton) && !MyScene.IsMouseOverUI)
 			{
@@ -59,8 +52,8 @@ namespace Dania_Defence_Project
 				{
 					if (item is Tile == true && item.Transform.Position == mouseTile.Transform.Position)
 					{
-						Destroy(item);
-					}
+                        (item as Tile).ChangeTile(TileTypeEnum.Empty);
+                    }
 				}
 			}
 		}

@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\MyXMLData\bin\Debug\MyXMLData.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -91,4 +92,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Texture/Towers/Tower_Milo.png
+
+#begin XML/TestSaveJamen.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:XML/TestSaveJamen.xml
 

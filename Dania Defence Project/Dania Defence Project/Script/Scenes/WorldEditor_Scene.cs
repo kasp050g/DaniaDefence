@@ -10,7 +10,7 @@ namespace Dania_Defence_Project
 {
 	public class WorldEditor_Scene : Scene
 	{
-		public int sizeOfTile = 50;
+		public int sizeOfTile = 100;
 		public override void Initialize()
 		{
 			base.Initialize();
@@ -31,50 +31,10 @@ namespace Dania_Defence_Project
 		{
 			base.Update();
 		}
-			List<GameObject> tielsNameShow = new List<GameObject>();
+
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw(spriteBatch);
-
-			spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-
-			tielsNameShow.Clear();
-
-			foreach (var item in gameObjects)
-			{
-				if (item is Tile)
-				{
-					tielsNameShow.Add(item);
-				}
-			}
-
-			for (int i = 0; i < tielsNameShow.Count; i++)
-			{
-				spriteBatch.DrawString(
-					// SpriteFont
-					SpriteContainer.normalFont,
-					// String text
-					"Tile Nr: " + i.ToString(),
-					// Position
-					new Vector2(10, 20 * i + 10),
-					// Color
-					Color.Black,
-					// Rotation
-					0,
-					// Origin
-					Vector2.Zero,
-					// Scale
-					new Vector2(0.5f, 0.5f),
-					// SpriteEffects
-					SpriteEffects.None,
-					// LayerDepth
-					1
-				);
-			}
-			spriteBatch.End();
-
-
-
 		}
 
 		public void MadeScene()
@@ -87,22 +47,28 @@ namespace Dania_Defence_Project
 
 		public void MadeGrid()
 		{
-            int GridNumber = 50;
+            int GridNumber = 4;
 			for (int x = 0; x < GridNumber; x++)
 			{
 				for (int y = 0; y < GridNumber; y++)
 				{
-					ShowGrid showGrid = new ShowGrid(sizeOfTile);
-					showGrid.LayerDepth = 0.99f;
-					showGrid.Transform.Position = new Vector2(sizeOfTile * x, sizeOfTile * y);
-					showGrid.Transform.Position -= new Vector2(sizeOfTile * GridNumber / 2, sizeOfTile * GridNumber / 2);
-					Instantiate(showGrid);
+					//ShowGrid showGrid = new ShowGrid(sizeOfTile);
+					//showGrid.LayerDepth = 0.01f;
+					//showGrid.Transform.Position = new Vector2(sizeOfTile * x, sizeOfTile * y);
+					//showGrid.Transform.Position -= new Vector2(sizeOfTile * GridNumber / 2, sizeOfTile * GridNumber / 2);
+					//Instantiate(showGrid);
 
-                    Tile tile = new Tile();
+                    Tile tile = new Tile(sizeOfTile);
                     tile.Transform.Scale = new Vector2(sizeOfTile, sizeOfTile);
                     tile.Transform.Position = new Vector2(sizeOfTile * x, sizeOfTile * y);
                     tile.Transform.Position -= new Vector2(sizeOfTile * GridNumber / 2, sizeOfTile * GridNumber / 2);
                     tile.Color = Color.ForestGreen;
+                    tile.LayerDepth = 0.01f;
+                    if(tile.Transform.Position == new Vector2(0, 0))
+                    {
+                        tile.TileType = TileTypeEnum.Center;
+                        tile.Color = Color.MediumVioletRed;
+                    }
                     Instantiate(tile);
                 }
 			}

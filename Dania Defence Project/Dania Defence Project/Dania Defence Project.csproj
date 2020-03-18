@@ -72,7 +72,11 @@
     <Compile Include="Script\Core Script\Static Component\MadeXml.cs" />
     <Compile Include="Script\Core Script\Static Component\Time.cs" />
     <Compile Include="Script\Dania Defence Script\Grid Folder\ShowGrid.cs" />
+    <Compile Include="Script\Dania Defence Script\Set Towers\SetTowers.cs" />
+    <Compile Include="Script\Dania Defence Script\Tile Folder\Spawner.cs" />
     <Compile Include="Script\Dania Defence Script\Tile Folder\Tile.cs" />
+    <Compile Include="Script\Dania Defence Script\Tile Folder\TileTypeEnum.cs" />
+    <Compile Include="Script\Dania Defence Script\Tile Folder\_Tower.cs" />
     <Compile Include="Script\Dania Defence Script\World Editor\WorldEditor.cs" />
     <Compile Include="Script\Scenes\Casper_Scene.cs" />
     <Compile Include="Script\Scenes\Kasper_Scene.cs" />

@@ -28,7 +28,7 @@ namespace Dania_Defence_Project
             //    content.Load<Texture2D>("Texture/Test/Pixel")},
             //"NameTest");
 
-            //myLevel = content.Load<MyLevel>("File");
+            myLevel = content.Load<MyLevel>("XML/TestSaveJamen");
             //myLevel = content.Load<MyLevel>("_jamen");
         }
 
