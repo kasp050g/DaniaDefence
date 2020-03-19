@@ -15,9 +15,12 @@ namespace Dania_Defence_Project
 		public float fireRate;
 		public float currentFireRate;
 
-		public float range = 200;
+		public float range = 300;
 
-		Vector2 myTarget;
+		public Vector2 myTarget;
+
+		public TowerProjectile myProjectile;
+
 		#endregion
 
 		#region Constructor
@@ -33,25 +36,13 @@ namespace Dania_Defence_Project
 			this.fireRate = _fireRate;
 		}
 
-		public void Projectile()
+		public Towers()
 		{
-			Instantiate(new TowerProjectile(
-				//Texture
-				SpriteContainer.sprite["TMP"],
 
-				//Position
-				transform.Position,
+		}
 
-				//Layer Depth
-				0.2f,
-
-				//Origin
-				OriginPositionEnum.Mid,
-
-				//Speed
-				this.speed
-				));
-
+		public virtual void Projectile()
+		{
 			currentFireRate = fireRate;
 		}
 

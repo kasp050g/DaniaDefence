@@ -41,39 +41,11 @@ namespace Dania_Defence_Project
 		#region Constructors
 		public void TeacherTowers()
 		{
-			Towers DennisTower = new Towers(
-				//Texture
-				SpriteContainer.sprite["Dennis"],
-
-				//Position
-				new Vector2(-320, 180),
-
-				//Scale
-				new Vector2(0.25f, 0.25f),
-
-				//Layer Depth
-				0.25f,
-
-				//Origin
-				OriginPositionEnum.BottomMid, 
-				
-				//Speed
-				60f,
-
-				//Fire Rate
-				1f
-				);
-
-			//Gets Towers by Sprite name, position, scale, layer depth, origin point, projectile speed and fire rate
-			Towers MiloTower = new Towers(SpriteContainer.sprite["Milo"], new Vector2(0, 180), 
-				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.BottomMid, 150f, 1f);
-
-			Towers MikaelTower = new Towers(SpriteContainer.sprite["Mikael"], new Vector2(360, 180),
-				new Vector2(0.25f, 0.25f), 0.25f, OriginPositionEnum.BottomMid, 300f, 0.33f);
-
-			Instantiate(DennisTower);
-			Instantiate(MiloTower);
-			Instantiate(MikaelTower);
+			Instantiate(new Milo_Tower());
+			Instantiate(new Mikael_Tower());
+			Instantiate(new Kenneth_Tower());
+			Instantiate(new Dennis_Tower());
+			Instantiate(new Jonathan_Tower());
 		}
 		#endregion
 	}

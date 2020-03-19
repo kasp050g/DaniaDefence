@@ -21,11 +21,27 @@ namespace Dania_Defence_Project
 
             // Sole Sprite
             AddSprite(content.Load<Texture2D>("Texture/Test/Pixel"), "Pixel");
+
+			//Towers
 			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Mikael"), "Mikael");
 			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Milo"), "Milo");
 			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Dennis"), "Dennis");
 			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Kenneth"), "Kenneth");
 			AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Jonathan"), "Jonathan");
+
+			//Students
+			AddSprite(content.Load<Texture2D>("Texture/Students/Student_Casper"), "Casper");
+			AddSprite(content.Load<Texture2D>("Texture/Students/Student_Kasper"), "Kasper");
+			AddSprite(content.Load<Texture2D>("Texture/Students/Student_Marius"), "Marius");
+			AddSprite(content.Load<Texture2D>("Texture/Students/Student_Gordon"), "Freeman");
+
+			//Projectiles
+			AddSprite(content.Load<Texture2D>("Texture/Projectiles/Projectile_Dennis"), "PDennis");
+			AddSprite(content.Load<Texture2D>("Texture/Projectiles/Projectile_MonoGame"), "Monogame");
+			AddSprite(content.Load<Texture2D>("Texture/Projectiles/Projectile_CSharp"), "C_Sharp");
+			AddSprite(content.Load<Texture2D>("Texture/Projectiles/Projectile_VisualStudio"), "VisualStudio");
+			AddSprite(content.Load<Texture2D>("Texture/Projectiles/Projectile_PowerPoint"), "PowerPoint");
+
 			AddSprite(content.Load<Texture2D>("Texture/Towers/TowerProjectileTMP"), "TMP");
 
 			// List of Sprite

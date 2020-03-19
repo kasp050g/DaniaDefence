@@ -17,11 +17,13 @@ namespace Dania_Defence_Project
 		public Vector2 myTarget;
 
 		#region Constructor
-		public TowerProjectile(Texture2D _sprite, Vector2 _position, float _layerDepth, 
+		public TowerProjectile(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, 
 			OriginPositionEnum _originPositionEnum, float _speed)
 		{
 			this.sprite = _sprite;
-			this.Transform.Position = new Vector2(_position.X, _position.Y - 100);
+			this.Transform.Position = _position;
+			this.Transform.Scale = _scale;
+			this.Transform.Scale = _scale;
 			this.layerDepth = _layerDepth;
 			this.OriginPositionEnum = _originPositionEnum;
 			this.speed = _speed;

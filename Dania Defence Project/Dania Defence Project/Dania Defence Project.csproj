@@ -69,7 +69,12 @@
     <Compile Include="Script\Core Script\Static Component\Input.cs" />
     <Compile Include="Script\Core Script\Static Component\Time.cs" />
     <Compile Include="Script\Dania Defence Script\Grid Folder\ShowGrid.cs" />
-    <Compile Include="Script\Dania Defence Script\Tower Folder\Tower.cs" />
+    <Compile Include="Script\Dania Defence Script\Tower Folder\Dennis_Tower.cs" />
+    <Compile Include="Script\Dania Defence Script\Tower Folder\Jonathan_Tower.cs" />
+    <Compile Include="Script\Dania Defence Script\Tower Folder\Kenneth_Tower.cs" />
+    <Compile Include="Script\Dania Defence Script\Tower Folder\Mikael_Tower.cs" />
+    <Compile Include="Script\Dania Defence Script\Tower Folder\Milo_Tower.cs" />
+    <Compile Include="Script\Dania Defence Script\Tower Folder\Towers.cs" />
     <Compile Include="Script\Dania Defence Script\Tower Folder\TowerProjectile.cs" />
     <Compile Include="Script\Scenes\Casper_Scene.cs" />
     <Compile Include="Script\Scenes\Kasper_Scene.cs" />
