@@ -19,12 +19,14 @@ namespace Dania_Defence_Project
         public override void Awake()
         {
             base.Awake();
+			Instantiate(new _WaveTest(sizeOfTile));
+			_Astar_Test_For_unit.TileSize = sizeOfTile;
         }
         public override void Start()
         {
             base.Start();
             MadeTileOnMouse();
-        }
+		}
         public override void Update()
         {
             base.Update();

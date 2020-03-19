@@ -13,7 +13,7 @@ namespace Dania_Defence_Project
 {
 	public class Kasper_Scene : Scene
 	{
-        public int sizeOfTile = 50;
+        public int sizeOfTile = 75;
         public override void Initialize()
 		{
 			base.Initialize();
@@ -23,7 +23,8 @@ namespace Dania_Defence_Project
             Instantiate(new SetTowers(sizeOfTile));
             _Astar_Test _Astar_Test = new _Astar_Test(sizeOfTile);
             Instantiate(_Astar_Test);
-            
+
+
         }
 
 		public override void OnSwitchToThisScene()

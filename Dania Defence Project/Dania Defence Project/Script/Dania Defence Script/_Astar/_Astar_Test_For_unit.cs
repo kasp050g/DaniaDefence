@@ -8,77 +8,68 @@ using System.Threading.Tasks;
 
 namespace Dania_Defence_Project
 {
-	public class _Astar_Test : Component
+	public static class _Astar_Test_For_unit 
 	{
-		public bool runAstar = true;
-		int tileSize = 1;
-		Tile start;
-		Tile goal;
+		public static bool runAstar = true;
+		static int  tileSize = 1;
+		static Tile start;
+		static Tile goal;
 
-		Tile currentTile;
+		static Tile currentTile;
 
-		List<Tile> open = new List<Tile>();
-		List<Tile> close = new List<Tile>();
+		static List<Tile> open = new List<Tile>();
+		static List<Tile> close = new List<Tile>();
 
-		public List<Tile> tiles = new List<Tile>();
-		public _Astar_Test(int _tileSize)
-		{
-			this.tileSize = _tileSize;
-		}
-		public override void Awake()
-		{
-			base.Awake();
-		}
-		public override void Start()
-		{
-			base.Start();
+		public static List<Tile> tiles = new List<Tile>();
 
-		}
-		public override void Update()
-		{
-			base.Update();
+		public static int TileSize { get => tileSize; set => tileSize = value; }
 
-			if (Input.GetKeyDown(Keys.E))
-			{
-				DoTheAStar();
-			}
-		}
+		//public _Astar_Test_For_unit(int _tileSize)
+		//{
+		//	this.tileSize = _tileSize;
+		//}
+		//public override void Awake()
+		//{
+		//	base.Awake();
+		//}
+		//public override void Start()
+		//{
+		//	base.Start();
 
-		public void DoTheAStar()
+		//}
+		//public override void Update()
+		//{
+		//	base.Update();
+
+
+		//}
+
+		public static Tile GetAstarWay(Tile _myPosition,List<Tile> _tiles)
 		{
 			tiles.Clear();
 			open.Clear();
 			close.Clear();
 
-			GetTileList();
+			start = _myPosition;
+			tiles = _tiles;
+
+			//GetTileList();
 			StartAndFindGoal(tiles);
 			MainLoop();
+
+			return currentTile;
 		}
 
-		public void GetTileList()
-		{
 
-			List<Tile> newTiles = new List<Tile>();
-			foreach (var item in myScene.GameObjects)
-			{
-				if (item is Tile)
-				{
-					if((item as Tile).TileType == TileTypeEnum.Empty)
-					item.Color = Color.ForestGreen;
-					newTiles.Add(item as Tile);
-				}
-			}
-			tiles = newTiles;
-		}
 
-		public void StartAndFindGoal(List<Tile> _tiles)
+		public static void StartAndFindGoal(List<Tile> _tiles)
 		{
 			foreach (Tile item in _tiles)
 			{
-				if (item.TileType == TileTypeEnum.Spawn)
-				{
-					start = item;  //TODO set start to current Position
-				}
+				//if (item.TileType == TileTypeEnum.Spawn)
+				//{
+				//	start = item;  //TODO set start to current Position
+				//}
 				if (item.TileType == TileTypeEnum.Center)
 				{
 					goal = item;
@@ -87,7 +78,7 @@ namespace Dania_Defence_Project
 			AddOpen(start, 0);
 		}
 
-		public void MainLoop()
+		public static void MainLoop()
 		{
 			while (runAstar == true)
 			{
@@ -109,7 +100,7 @@ namespace Dania_Defence_Project
 			}
 		}
 
-		public void FindLowerCostCell()
+		public static void FindLowerCostCell()
 		{
 			currentTile = open[0];
 			foreach (Tile item in open)
@@ -119,16 +110,12 @@ namespace Dania_Defence_Project
 					currentTile = item;
 				}
 			}
-			if (currentTile.TileType != TileTypeEnum.Center && currentTile.TileType != TileTypeEnum.Spawn)
-			{
-				currentTile.Color = Color.CadetBlue;
-			}
-			
+
 			open.Remove(currentTile);
 			close.Add(currentTile);
 		}
 
-		public void AddOpen(Tile cell, int gCost)
+		public static void AddOpen(Tile cell, int gCost)
 		{
 
 			int y = (int)cell.Transform.Position.Y;
@@ -186,7 +173,7 @@ namespace Dania_Defence_Project
 		}
 
 
-		public void CellroundTarget(Tile target)
+		public static void CellroundTarget(Tile target)
 		{
 			List<Tile> cells = new List<Tile>();
 
@@ -239,7 +226,7 @@ namespace Dania_Defence_Project
 
 		}
 
-		public void BeforOpenAdd(Tile cell, int gCost)
+		public static void BeforOpenAdd(Tile cell, int gCost)
 		{
 			if (!close.Contains(cell) && !open.Contains(cell) && cell.TileType != TileTypeEnum.Block && cell.TileType != TileTypeEnum.Tower)
 			{
@@ -254,15 +241,11 @@ namespace Dania_Defence_Project
 			}
 		}
 
-		public void GoHome()
+		public static void GoHome()
 		{
 			while (true)
 			{
-				if (currentTile.TileType != TileTypeEnum.Center && currentTile.TileType != TileTypeEnum.Spawn)
-				{
-					currentTile.Color = Color.Blue;
-				}
-				if (currentTile == start)
+				if (currentTile.LastTile == start)
 				{
 					break;
 				}

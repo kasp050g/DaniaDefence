@@ -27,17 +27,18 @@ namespace Dania_Defence_Project
         public int H { get => _h; set => _h = value; }
         public int G { get => _g; set => _g = value; }
         public Tile LastTile { get => lastTile; set => lastTile = value; }
+		public int TileSize { get => tileSize; set => tileSize = value; }
 
-        public Tile(int _tileSize)
+		public Tile(int _tileSize)
         {
-            this.tileSize = _tileSize;
+            this.TileSize = _tileSize;
         }
         public override void Awake()
 		{
             tower = new _Tower("Tower_Dennis");
-            float towerSize = (float)tileSize / 400;
+            float towerSize = (float)TileSize / 400;
             tower.Transform.Scale = new Vector2(towerSize, towerSize);
-            tower.Transform.Position = transform.Position + new Vector2(tileSize / 2, ((float)tileSize * 0.98f));
+            tower.Transform.Position = transform.Position + new Vector2(TileSize / 2, ((float)TileSize * 0.98f));
             tower.LayerDepth = 0.8f;
             ChangeTile(tileType);
             Instantiate(tower);
@@ -69,7 +70,7 @@ namespace Dania_Defence_Project
                 // Origin
                 this.transform.Origin,
                 // Scale
-                new Vector2(tileSize, 1),
+                new Vector2(TileSize, 1),
                 // SpriteEffects
                 this.spriteEffects,
                 // LayerDepth
@@ -89,7 +90,7 @@ namespace Dania_Defence_Project
                 // Origin
                 this.transform.Origin,
                 // Scale
-                new Vector2(1, tileSize),
+                new Vector2(1, TileSize),
                 // SpriteEffects
                 this.spriteEffects,
                 // LayerDepth
