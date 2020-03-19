@@ -14,8 +14,20 @@ namespace Dania_Defence_Project
         private _Tower tower;
         private int tileSize;
 
+        // Astar
+        private int _f;
+        private int _h;
+        private int _g;
+        private Tile lastTile;
+
         public TileTypeEnum TileType { get => tileType; set => tileType = value; }
         public _Tower Tower { get => tower; set => tower = value; }
+        // Astar
+        public int F { get => _f; set => _f = value; }
+        public int H { get => _h; set => _h = value; }
+        public int G { get => _g; set => _g = value; }
+        public Tile LastTile { get => lastTile; set => lastTile = value; }
+
         public Tile(int _tileSize)
         {
             this.tileSize = _tileSize;

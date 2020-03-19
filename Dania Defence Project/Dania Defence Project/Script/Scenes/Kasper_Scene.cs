@@ -13,13 +13,17 @@ namespace Dania_Defence_Project
 {
 	public class Kasper_Scene : Scene
 	{
-        public int sizeOfTile = 75;
+        public int sizeOfTile = 50;
         public override void Initialize()
 		{
 			base.Initialize();
             MadeGrid();
 			MakeGameGui();
+            MadeSpawer();
             Instantiate(new SetTowers(sizeOfTile));
+            _Astar_Test _Astar_Test = new _Astar_Test(sizeOfTile);
+            Instantiate(_Astar_Test);
+            
         }
 
 		public override void OnSwitchToThisScene()
@@ -159,6 +163,20 @@ namespace Dania_Defence_Project
 			Instantiate(showLifeText);
 			#endregion
 		}
+
+        public void MadeSpawer()
+        {
+            foreach (GameObject item in gameObjects)
+            {
+                if(item is Tile == true && (item as Tile).TileType == TileTypeEnum.Spawn)
+                {
+                    Instantiate(new Spawner(
+                        item.Transform.Position + 
+                        new Vector2(sizeOfTile / 2, sizeOfTile / 2)
+                        ));
+                }
+            }
+        }
 
         public void MadeGrid()
         {

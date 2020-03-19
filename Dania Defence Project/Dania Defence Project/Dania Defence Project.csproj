@@ -78,6 +78,7 @@
     <Compile Include="Script\Dania Defence Script\Tile Folder\TileTypeEnum.cs" />
     <Compile Include="Script\Dania Defence Script\Tile Folder\_Tower.cs" />
     <Compile Include="Script\Dania Defence Script\World Editor\WorldEditor.cs" />
+    <Compile Include="Script\Dania Defence Script\_Astar\_Astar_Test.cs" />
     <Compile Include="Script\Scenes\Casper_Scene.cs" />
     <Compile Include="Script\Scenes\Kasper_Scene.cs" />
     <Compile Include="Script\Scenes\MainScene.cs" />
