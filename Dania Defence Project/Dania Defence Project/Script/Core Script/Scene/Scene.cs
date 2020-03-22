@@ -92,7 +92,12 @@ namespace Dania_Defence_Project
 				if (gameObject.IsActive)
 				{
 					gameObject.Draw(spriteBatch);
-				}
+                    if (gameObject is _Tower)
+                    {
+                        DrawCollisionBox(gameObject as _Tower, spriteBatch, SpriteContainer.sprite["Pixel"]);
+                    }
+                }
+
 			}
 			spriteBatch.End();
 
@@ -102,12 +107,27 @@ namespace Dania_Defence_Project
 				if (gameObject.IsActive)
 				{
 					gameObject.Draw(spriteBatch);
+
 				}
 			}
 			spriteBatch.End();
 		}
 
-		public void CheckForGUI()
+        private void DrawCollisionBox(_Tower go, SpriteBatch spriteBatch,Texture2D collisionTexture)
+        {
+            Rectangle collisionBox = go.TowerRangeCollision;
+            Rectangle topLine = new Rectangle(collisionBox.X, collisionBox.Y, collisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(collisionBox.X, collisionBox.Y + collisionBox.Height, collisionBox.Width, 1);
+            Rectangle rigthLine = new Rectangle(collisionBox.X + collisionBox.Width, collisionBox.Y, 1, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.X, collisionBox.Y, 1, collisionBox.Height);
+
+            spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rigthLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+        }
+
+        public void CheckForGUI()
 		{
 			MouseState currentMouse = Mouse.GetState();
 			Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);

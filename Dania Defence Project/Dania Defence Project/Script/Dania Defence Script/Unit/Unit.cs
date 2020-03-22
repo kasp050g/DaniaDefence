@@ -1,44 +1,74 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Dania_Defence_Project
 {
-
-    public class Unit: GameObject
-    {
-        //public event Action onUnitGraduation;
-
-
+	public class Unit : GameObject
+	{
         protected Stat knowlegde = new Stat(); // henter knowlegde værdien fra stat classen
         protected Stat movementspeed = new Stat(); // henter movementspeed værdien fra stat classen
         protected bool isalive = true; // en tjekker for om en unit er i live
 
+        protected float moveSpeed = 100f;
 		public Tile myTarget;
-		protected Vector2 velocity;
-		protected int tileSize;
-		public Unit()
-		{
+        protected Vector2 velocity;
+        protected int tileSize;
 
-		}
-		public Unit(Tile _myTarget, int _tileSize)
+        public virtual Rectangle UnitCollision
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)transform.Position.X - (int)(transform.Origin.X * transform.Scale.X),
+                    (int)transform.Position.Y - (int)(transform.Origin.Y * transform.Scale.Y),
+                    (int)(sprite.Width * transform.Scale.X),
+                    (int)(sprite.Height * transform.Scale.Y)
+                    );
+            }
+        }
+
+        public Unit()
+        {
+
+        }
+        public Unit(Tile _myTarget,int _tileSize)
 		{
 			this.myTarget = _myTarget;
 			this.tileSize = _tileSize;
 		}
-		public override void Awake() // dette er kode der køre inden spillet går i gang
+		public override void Awake()
 		{
-			MadeUnit();
+            knowlegde.CurrentValue = 0;
+            knowlegde.MaxValue = 100; // sætter hvad max værdien for knowlegde kan være (hvor meget hp units har)
+            movementspeed.MaxValue = 100; // sætter hvor hurtigt units kan bevæge sig
+
+            originPositionEnum = OriginPositionEnum.Mid;
 			base.Awake();
-			knowlegde.CurrentValue = knowlegde.MaxValue;
-			movementspeed.CurrentValue = movementspeed.MaxValue;
-            //knowlegde.MaxValue = 100; // sætter hvad max værdien for knowlegde kan være (hvor meget hp units har)
-            //movementspeed.MaxValue = 100; // sætter hvor hurtigt units kan bevæge sig
-        }
+			transform.Scale = new Vector2(0.3f, 0.3f);
+			layerDepth = 1f;
+		}
+		public override void Start()
+		{
+			base.Start();
+		}
+		public override void Update()
+		{
+			base.Update();
+
+			if (myTarget != null)
+			{
+				Move();
+			}
+		}
+		public override void Draw(SpriteBatch spriteBatch)
+		{
+			base.Draw(spriteBatch);
+		}
 
         public void Takedamage(float input) // method for når uniten tager skade
         {
@@ -50,41 +80,7 @@ namespace Dania_Defence_Project
             }
         }
 
-        public override void Start() // den første gang spillet kommer til at gøre noget
-        {
-            base.Start();
-        }
-
-        public override void Update() // den der køre hele tiden, skade skal ske gennem denne
-        {
-            base.Update();
-			if (myTarget != null)
-			{
-				Move();
-			}
-		}
-
-        public override void Draw(SpriteBatch spriteBatch) //tegne sprites der høre til units
-        {
-            base.Draw(spriteBatch);
-        }
-
-		public void MadeUnit()
-		{
-			originPositionEnum = OriginPositionEnum.Mid;
-			transform.Scale = new Vector2(20, 20);
-			layerDepth = 1f;
-		}
-
-        public void UnitGraduation()
-        {
-
-				//onUnitGraduation();
-				Destroy(this);
-			
-		}
-
-		public void UseAstar()
+        public void UseAstar()
 		{
 			List<Tile> newTiles = new List<Tile>();
 			foreach (var item in myScene.GameObjects)
@@ -95,8 +91,10 @@ namespace Dania_Defence_Project
 				}
 			}
 
-			myTarget = _Astar_Test_For_unit.GetAstarWay(myTarget, newTiles);
+			myTarget = _Astar_Test_For_unit.GetAstarWay(myTarget,newTiles);
 		}
+
+
 
 		public void Move()
 		{
@@ -111,7 +109,7 @@ namespace Dania_Defence_Project
 				velocity += new Vector2(0, -1);
 			}
 
-			if (transform.Position.Y < Yposition + offSet)
+			if (transform.Position.Y  < Yposition + offSet)
 			{
 				velocity += new Vector2(0, 1);
 			}
@@ -126,24 +124,24 @@ namespace Dania_Defence_Project
 				velocity += new Vector2(1, 0);
 			}
 
-			if (velocity != Vector2.Zero)
+			if(velocity != Vector2.Zero)
 			{
 				velocity.Normalize();
 
-				transform.Position += velocity * movementspeed.CurrentValue * Time.deltaTime;
+				transform.Position += velocity * moveSpeed * Time.deltaTime;
 			}
 
-			double c = Math.Sqrt(tileSize * tileSize + tileSize * tileSize);
+			double c = Math.Sqrt(tileSize * tileSize + tileSize * tileSize);		
 
-			if (Vector2.Distance(transform.Position, myTarget.Transform.Position + new Vector2(tileSize / 2, tileSize / 2)) < 5)
+			if (Vector2.Distance(transform.Position,myTarget.Transform.Position + new Vector2(tileSize / 2,tileSize / 2)) < 5)
 			{
-				if ((myTarget as Tile).TileType != TileTypeEnum.Center)
+				if((myTarget as Tile).TileType != TileTypeEnum.Center)
 				{
 					UseAstar();
 				}
 				else
 				{
-					UnitGraduation();
+
 				}
 
 			}

@@ -45,7 +45,7 @@ namespace Dania_Defence_Project
 
 		public void SwaperUnit()
 		{
-			Unit_GordenFreeMan unit = new Unit_GordenFreeMan(spawnTile, tileSize);
+			Unit_Kasper unit = new Unit_Kasper(spawnTile, tileSize);
 			foreach (var item in myScene.GameObjects)
 			{
 				//if (item is Tile && (item as Tile).TileType == TileTypeEnum.Center)

@@ -13,7 +13,7 @@ namespace Dania_Defence_Project
 {
 	public class Kasper_Scene : Scene
 	{
-        public int sizeOfTile = 75;
+        public int sizeOfTile = 50;
         public override void Initialize()
 		{
 			base.Initialize();

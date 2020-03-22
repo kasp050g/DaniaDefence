@@ -91,9 +91,8 @@
     <Compile Include="Script\Dania Defence Script\World Editor\WorldEditor.cs" />
     <Compile Include="Script\Dania Defence Script\_Astar\_Astar_Test.cs" />
     <Compile Include="Script\Dania Defence Script\_Astar\_Astar_Test_For_unit.cs" />
-    <Compile Include="Script\Dania Defence Script\_Unit.cs" />
-    <Compile Include="Script\Dania Defence Script\Unit\Stat.cs" />
     <Compile Include="Script\Dania Defence Script\Unit\Unit.cs" />
+    <Compile Include="Script\Dania Defence Script\Unit\Stat.cs" />
     <Compile Include="Script\Dania Defence Script\_Wave\Wave.cs" />
     <Compile Include="Script\Dania Defence Script\_Wave\WaveContainer.cs" />
     <Compile Include="Script\Dania Defence Script\_Wave\WaveController.cs" />
@@ -117,6 +116,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Texture\Projectiles\Projectile_CSharp.png" />
+    <Content Include="Content\Texture\Projectiles\Projectile_Dennis.png" />
+    <Content Include="Content\Texture\Projectiles\Projectile_MonoGame.png" />
+    <Content Include="Content\Texture\Projectiles\Projectile_PowerPoint.png" />
+    <Content Include="Content\Texture\Projectiles\Projectile_VisualStudio.png" />
+    <Content Include="Content\Texture\Students\Student_Casper.png" />
+    <Content Include="Content\Texture\Students\Student_Gordon.png" />
+    <Content Include="Content\Texture\Students\Student_Kasper.png" />
+    <Content Include="Content\Texture\Students\Student_Marius.png" />
     <Content Include="Content\Texture\Test\Pixel.png" />
     <Content Include="Content\Texture\Towers\Tower_Dennis.png" />
     <Content Include="Content\Texture\Towers\Tower_Jonathan.png" />

@@ -10,11 +10,11 @@ namespace Dania_Defence_Project
     {
         private float currentValue; // den nuværende værdi som uniten har
         private float maxValue; // den maximale værdi som unit kan få (i spillet "dør" uniten vis den når denne værdi)
+        //private float armorValue;
+        //bool isSlowed;
 
         public float CurrentValue { get => currentValue; set => currentValue = value; } //dette gør at den kan hente værdien.
-
-
-		public float MaxValue { get => maxValue; set => maxValue = value; } // kan hente værdine og sætte værdien for maxvalue
+        public float MaxValue { get => maxValue; set => maxValue = value; } // kan hente værdine og sætte værdien for maxvalue
 
         public void SubtrackValue(float input) // metod til at kunne trække en værdi fra vores knowledge bar (hp bar)
         {
@@ -30,7 +30,7 @@ namespace Dania_Defence_Project
             currentValue += input; // kan tilføje en værdi
             if (currentValue > maxValue) // tjekker om den nuværende værdi er over den total værdi den kan have.
             {
-                currentValue = maxValue; 
+                currentValue = maxValue;
             }
         }
     }

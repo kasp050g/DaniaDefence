@@ -62,19 +62,7 @@ namespace Dania_Defence_Project
 			}
 		}
 
-		public void FindTarget()
-		{
-			MouseState state = Mouse.GetState();
 
-			var mouseX = state.Position.X;
-			var mouseY = state.Position.Y;
-
-			Vector2 newPosition = new Vector2(mouseX, mouseY);
-
-			Vector2 worldPosition = Vector2.Transform(newPosition, Matrix.Invert(SceneController.Camera.Transform));
-
-			myTarget = worldPosition;
-		}
 		#endregion
 
 		#region Methods
@@ -92,12 +80,9 @@ namespace Dania_Defence_Project
 		{
 			MouseInput();
 
-			FindTarget();
+			//FindTarget();
 
-			if (currentFireRate > 0)
-			{
-				currentFireRate -= (float)Time.deltaTime;
-			}
+
 
 			base.Update();
 		}

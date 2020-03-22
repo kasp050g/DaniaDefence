@@ -13,6 +13,7 @@ namespace Dania_Defence_Project
 		public override void Initialize()
 		{
 			base.Initialize();
+            Instantiate(new _Tower());
 		}
 
 		public override void OnSwitchToThisScene()

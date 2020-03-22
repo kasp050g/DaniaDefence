@@ -35,11 +35,16 @@ namespace Dania_Defence_Project
         }
         public override void Awake()
 		{
-            tower = new _Tower("Tower_Dennis");
             float towerSize = (float)TileSize / 400;
-            tower.Transform.Scale = new Vector2(towerSize, towerSize);
-            tower.Transform.Position = transform.Position + new Vector2(TileSize / 2, ((float)TileSize * 0.98f));
-            tower.LayerDepth = 0.8f;
+
+            tower = new _Tower(
+               SpriteContainer.sprite["Tower_Dennis"],
+               transform.Position + new Vector2(TileSize / 2, ((float)TileSize * 0.98f)),
+               new Vector2(towerSize, towerSize),
+               0.8f,
+               OriginPositionEnum.BottomMid
+                );
+
             ChangeTile(tileType);
             Instantiate(tower);
             base.Awake();
