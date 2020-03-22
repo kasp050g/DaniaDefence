@@ -12,12 +12,13 @@ namespace Dania_Defence_Project
 	{
         protected Stat knowlegde = new Stat(); // henter knowlegde værdien fra stat classen
         protected Stat movementspeed = new Stat(); // henter movementspeed værdien fra stat classen
-        protected bool isalive = true; // en tjekker for om en unit er i live
+        protected bool isAlive = true; // en tjekker for om en unit er i live
 
         protected float moveSpeed = 100f;
-		public Tile myTarget;
+        protected Tile myTarget;
         protected Vector2 velocity;
         protected int tileSize;
+        protected UnitHealthBar_GUI unitHealthBar;
 
         public virtual Rectangle UnitCollision
         {
@@ -31,6 +32,14 @@ namespace Dania_Defence_Project
                     );
             }
         }
+
+        public Stat Knowlegde { get => knowlegde; set => knowlegde = value; }
+        public Stat Movementspeed { get => movementspeed; set => movementspeed = value; }
+        public bool IsAlive { get => isAlive; set => isAlive = value; }
+        public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+        public Tile MyTarget { get => myTarget; set => myTarget = value; }
+        public Vector2 Velocity { get => velocity; set => velocity = value; }
+        public int TileSize { get => tileSize; set => tileSize = value; }
 
         public Unit()
         {
@@ -49,9 +58,22 @@ namespace Dania_Defence_Project
 
             originPositionEnum = OriginPositionEnum.Mid;
 			base.Awake();
-			transform.Scale = new Vector2(0.3f, 0.3f);
-			layerDepth = 1f;
-		}
+            float newScale = (float)tileSize / 300;
+            transform.Scale = new Vector2(newScale, newScale);
+			layerDepth = 0.9f;
+
+            unitHealthBar = new UnitHealthBar_GUI(
+                SpriteContainer.sprite["Pixel"],
+                this,
+                1,
+                1,
+                tileSize,
+                new Vector2(tileSize/2,tileSize/8),
+                1,
+                OriginPositionEnum.BottomLeft
+                );
+            Instantiate(unitHealthBar);
+        }
 		public override void Start()
 		{
 			base.Start();
@@ -73,10 +95,10 @@ namespace Dania_Defence_Project
         public void Takedamage(float input) // method for når uniten tager skade
         {
             knowlegde.AddValue(input);
+            unitHealthBar.StartFadeOut();
             if (knowlegde.CurrentValue >= knowlegde.MaxValue)
             {
-                isalive = false;
-                //onUnitGraduation();
+                Die();
             }
         }
 
@@ -94,7 +116,14 @@ namespace Dania_Defence_Project
 			myTarget = _Astar_Test_For_unit.GetAstarWay(myTarget,newTiles);
 		}
 
-
+        public void Die()
+        {
+            isAlive = false;
+            //onUnitGraduation();
+            Destroy(this);
+            Destroy(unitHealthBar);
+            isActive = false;
+        }
 
 		public void Move()
 		{
@@ -141,8 +170,8 @@ namespace Dania_Defence_Project
 				}
 				else
 				{
-
-				}
+                    Die();
+                }
 
 			}
 		}

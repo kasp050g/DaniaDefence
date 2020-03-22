@@ -92,9 +92,9 @@ namespace Dania_Defence_Project
 				if (gameObject.IsActive)
 				{
 					gameObject.Draw(spriteBatch);
-                    if (gameObject is _Tower)
+                    if (gameObject is Tower)
                     {
-                        DrawCollisionBox(gameObject as _Tower, spriteBatch, SpriteContainer.sprite["Pixel"]);
+                        DrawCollisionBox(gameObject as Tower, spriteBatch, SpriteContainer.sprite["Pixel"]);
                     }
                 }
 
@@ -113,7 +113,7 @@ namespace Dania_Defence_Project
 			spriteBatch.End();
 		}
 
-        private void DrawCollisionBox(_Tower go, SpriteBatch spriteBatch,Texture2D collisionTexture)
+        private void DrawCollisionBox(Tower go, SpriteBatch spriteBatch,Texture2D collisionTexture)
         {
             Rectangle collisionBox = go.TowerRangeCollision;
             Rectangle topLine = new Rectangle(collisionBox.X, collisionBox.Y, collisionBox.Width, 1);
@@ -213,7 +213,7 @@ namespace Dania_Defence_Project
 				if (component is GameObject && component is GUI == false)
 				{
 					gameObjects.Remove(component as GameObject);
-				}
+                }
 				else if (component is GUI)
 				{
 					if ((component as GUI).IsWorldGui == true)
@@ -229,7 +229,13 @@ namespace Dania_Defence_Project
 				{
 					components.Remove(component);
 				}
-			}
+            }
+
+            for (int i = 0; i < this.componentsToBeDestroyed.Count; i++)
+            {
+                this.componentsToBeDestroyed[i] = null;
+            }
+
 			this.componentsToBeDestroyed.Clear();
 		}
 		#endregion

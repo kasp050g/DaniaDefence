@@ -35,25 +35,25 @@ namespace Dania_Defence_Project
 
 		public override void Projectile()
 		{
-			myProjectile = new TowerProjectile(
-				//Texture
-				SpriteContainer.sprite["PowerPoint"],
+			//myProjectile = new TowerProjectile(
+			//	//Texture
+			//	SpriteContainer.sprite["PowerPoint"],
 
-				//Position
-				new Vector2(transform.Position.X, transform.Position.Y - 125),
+			//	//Position
+			//	new Vector2(transform.Position.X, transform.Position.Y - 125),
 
-				//Scale
-				new Vector2(0.5f, 0.5f),
+			//	//Scale
+			//	new Vector2(0.5f, 0.5f),
 
-				//Layer Depth
-				0.2f,
+			//	//Layer Depth
+			//	0.2f,
 
-				//Origin
-				OriginPositionEnum.Mid,
+			//	//Origin
+			//	OriginPositionEnum.Mid,
 
-				//Speed
-				this.speed
-				);
+			//	//Speed
+			//	this.speed
+			//	);
 
 			Instantiate(myProjectile);
 

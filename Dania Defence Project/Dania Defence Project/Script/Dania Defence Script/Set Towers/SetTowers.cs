@@ -43,6 +43,19 @@ namespace Dania_Defence_Project
                     if (item is Tile == true && item.Transform.Position == mouseTile.Transform.Position && (item as Tile).TileType == TileTypeEnum.Empty)
                     {
                         (item as Tile).ChangeTile(TileTypeEnum.Tower);
+                        Destroy((item as Tile).Tower);
+                        // Tile
+                        int tmpTileSize = (item as Tile).TileSize;
+                        float towerSize = (float)tmpTileSize / 400;
+                        
+                        Dennis_Tower tmp = new Dennis_Tower(
+                            (item as Tile).Transform.Position + new Vector2(tmpTileSize / 2, (float)tmpTileSize * 0.98f),
+                            new Vector2(towerSize, towerSize),
+                            tmpTileSize
+                            );
+
+                        (item as Tile).Tower = tmp;
+                        Instantiate(tmp);
                     }
                 }
             }

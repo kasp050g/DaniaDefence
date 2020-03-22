@@ -11,7 +11,7 @@ namespace Dania_Defence_Project
 	public class Tile : GameObject
 	{
         private TileTypeEnum tileType = TileTypeEnum.Empty;
-        private _Tower tower;
+        private Tower tower;
         private int tileSize;
 
         // Astar
@@ -21,7 +21,7 @@ namespace Dania_Defence_Project
         private Tile lastTile;
 
         public TileTypeEnum TileType { get => tileType; set => tileType = value; }
-        public _Tower Tower { get => tower; set => tower = value; }
+        public Tower Tower { get => tower; set => tower = value; }
         // Astar
         public int F { get => _f; set => _f = value; }
         public int H { get => _h; set => _h = value; }
@@ -37,12 +37,10 @@ namespace Dania_Defence_Project
 		{
             float towerSize = (float)TileSize / 400;
 
-            tower = new _Tower(
-               SpriteContainer.sprite["Tower_Dennis"],
+            tower = new Tower(
                transform.Position + new Vector2(TileSize / 2, ((float)TileSize * 0.98f)),
                new Vector2(towerSize, towerSize),
-               0.8f,
-               OriginPositionEnum.BottomMid
+               tileSize
                 );
 
             ChangeTile(tileType);
