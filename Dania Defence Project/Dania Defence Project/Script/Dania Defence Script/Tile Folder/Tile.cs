@@ -13,6 +13,8 @@ namespace Dania_Defence_Project
         private TileTypeEnum tileType = TileTypeEnum.Empty;
         private Tower tower;
         private int tileSize;
+        private Texture2D texture2D;
+        private Texture2D rock;
 
         // Astar
         private int _f;
@@ -35,6 +37,10 @@ namespace Dania_Defence_Project
         }
         public override void Awake()
 		{
+            texture2D = SpriteContainer.sprite["Pixel"];
+            sprite = SpriteContainer.sprite["Grass_Tile"];
+            rock = SpriteContainer.sprite["Stone_Tile"];
+
             float towerSize = (float)TileSize / 400;
 
             tower = new Tower(
@@ -61,7 +67,7 @@ namespace Dania_Defence_Project
 
             spriteBatch.Draw(
                 // Texture2D
-                sprite,
+                texture2D,
                 // Position
                 this.transform.Position,
                 // Source Rectangle
@@ -81,7 +87,7 @@ namespace Dania_Defence_Project
             );
             spriteBatch.Draw(
                 // Texture2D
-                sprite,
+                texture2D,
                 // Position
                 this.transform.Position,
                 // Source Rectangle
@@ -99,6 +105,30 @@ namespace Dania_Defence_Project
                 // LayerDepth
                 this.layerDepth + 0.001f
             );
+
+            if(TileType == TileTypeEnum.Block)
+            {
+                spriteBatch.Draw(
+                    // Texture2D
+                    this.rock,
+                    // Postion
+                    this.transform.Position,
+                    // Source Rectangle
+                    null,
+                    // Color
+                    this.color,
+                    // Rotation
+                    MathHelper.ToRadians(this.transform.Rotation),
+                    // Origin
+                    this.transform.Origin,
+                    // Scale
+                    this.transform.Scale * 2,
+                    // SpriteEffects
+                    this.spriteEffects,
+                    // LayerDepth
+                    this.layerDepth + 0.001f
+                );
+            }
         }
         public void ChangeTile(TileTypeEnum _tileType)
         {
@@ -107,17 +137,17 @@ namespace Dania_Defence_Project
                 case TileTypeEnum.Empty:
                     tower.IsActive = false;
                     tileType = _tileType;
-                    Color = Color.ForestGreen;
+                    
                     break;
                 case TileTypeEnum.Block:
                     tower.IsActive = false;
                     tileType = _tileType;
-                    Color = Color.SaddleBrown;
+
                     break;
                 case TileTypeEnum.Tower:
                     tower.IsActive = true;
                     tileType = _tileType;
-                    Color = Color.GreenYellow;
+                    
                     break;
                 case TileTypeEnum.Center:
                     tower.IsActive = false;

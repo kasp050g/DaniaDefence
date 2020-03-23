@@ -48,6 +48,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Script\Core Script\Enum\OriginPositionEnum.cs" />
+    <Compile Include="Script\Core Script\Enum\PickTowerType.cs" />
     <Compile Include="Script\Core Script\GUI Components\GuiButton.cs" />
     <Compile Include="Script\Core Script\GUI Components\GuiImagePanel.cs" />
     <Compile Include="Script\Core Script\GUI Components\GuiText.cs" />
@@ -117,6 +118,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Texture\Face\Dennis_Sprite.png" />
+    <Content Include="Content\Texture\Face\Jonathan_Sprite.png" />
+    <Content Include="Content\Texture\Face\Kenneth_Sprite.png" />
+    <Content Include="Content\Texture\Face\Mikael_Sprite.png" />
+    <Content Include="Content\Texture\Face\Milo_Sprite.png" />
     <Content Include="Content\Texture\Projectiles\Projectile_CSharp.png" />
     <Content Include="Content\Texture\Projectiles\Projectile_Dennis.png" />
     <Content Include="Content\Texture\Projectiles\Projectile_MonoGame.png" />
@@ -140,6 +146,7 @@
     <None Include="Content\Font\NormalFont.spritefont" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Texture\Tile\" />
     <Folder Include="Content\XML\" />
     <Folder Include="Script\Components\" />
   </ItemGroup>

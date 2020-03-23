@@ -11,168 +11,201 @@ using MyXMLData;
 
 namespace Dania_Defence_Project
 {
-	public class Kasper_Scene : Scene
-	{
-        public int sizeOfTile = 50;
+    public class Kasper_Scene : Scene
+    {
+        public int sizeOfTile = 100;
+        public SetTowers setTowers;
+
+        public int currentLive = 20;
+        public int currentCoin = 250;
+
+        GuiText showCurrencyText;
+        GuiText showLifeText;
+
         public override void Initialize()
-		{
-			base.Initialize();
+        {
+            base.Initialize();
+            setTowers = new SetTowers(sizeOfTile);
+            Instantiate(setTowers);
             MadeGrid();
-			MakeGameGui();
+            MakeGameGui();
             MadeSpawer();
-            Instantiate(new SetTowers(sizeOfTile));
             _Astar_Test _Astar_Test = new _Astar_Test(sizeOfTile);
             Instantiate(_Astar_Test);
-
-
         }
 
-		public override void OnSwitchToThisScene()
-		{
-			base.OnSwitchToThisScene();
-		}
+        public override void OnSwitchToThisScene()
+        {
+            base.OnSwitchToThisScene();
+        }
 
-		public override void OnSwitchAwayFromThisScene()
-		{
-			base.OnSwitchAwayFromThisScene();
-		}
+        public override void OnSwitchAwayFromThisScene()
+        {
+            base.OnSwitchAwayFromThisScene();
+        }
 
-		public override void Update()
-		{
-			base.Update();
-		}
+        public override void Update()
+        {
+            base.Update();
+        }
 
-		public override void Draw(SpriteBatch spriteBatch)
-		{
-			base.Draw(spriteBatch);
-		}
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        }
 
-		public void MakeGameGui()
-		{
-			#region Button Panel
-			// Button Image Panel
-			GuiImagePanel buttonImagePanel = new GuiImagePanel(
-				// Texture2D
-				SpriteContainer.sprite["Pixel"],
-				// Position
-				new Vector2(0,GraphicsSetting.ScreenSize.Y),
-				// Scale
-				new Vector2(GraphicsSetting.ScreenSize.X,100),
-				// Layer Depth
-				0.5f,
-				// Origin
-				OriginPositionEnum.BottomLeft
-				);
-			Instantiate(buttonImagePanel);
-			#endregion
+        public void MakeGameGui()
+        {
+            #region Button Panel
+            // Button Image Panel
+            GuiImagePanel buttonImagePanel = new GuiImagePanel(
+                // Texture2D
+                SpriteContainer.sprite["Pixel"],
+                // Position
+                new Vector2(0, GraphicsSetting.ScreenSize.Y),
+                // Scale
+                new Vector2(GraphicsSetting.ScreenSize.X, 100),
+                // Layer Depth
+                0.5f,
+                // Origin
+                OriginPositionEnum.BottomLeft
+                );
+            Instantiate(buttonImagePanel);
+            #endregion
 
-			#region Tower buttons
-			// Made Tower Button's
-			for (int i = 0; i < 4; i++)
-			{
-				GuiButton guiButton = new GuiButton(
-				// Texture2D
-				SpriteContainer.sprite["Pixel"],
-				// Position
-				new Vector2(50 + i * 100,-85),
-				// Scale
-				new Vector2(70, 70),
-				// Layer Depth
-				0.9f,
-				// Origin
-				OriginPositionEnum.TopLeft
-				);
+            #region Tower buttons
+            // Made Tower Button's
+            TowerButtom(buttonImagePanel, 0, "Face_Dennis", PickTowerType.Dennis);
+            TowerButtom(buttonImagePanel, 1, "Face_Jonathan", PickTowerType.Jonathan);
+            TowerButtom(buttonImagePanel, 2, "Face_Kennet", PickTowerType.Kenneth);
+            TowerButtom(buttonImagePanel, 3, "Face_Mikae", PickTowerType.Mikael);
+            TowerButtom(buttonImagePanel, 4, "Face_Milo", PickTowerType.Milo);
+            #endregion
 
-				guiButton.ParentGUI = buttonImagePanel;
-				guiButton.Transform.Position += buttonImagePanel.Transform.Position;
-				guiButton.Color = Color.Blue;
-				guiButton.IsHoveringColor = Color.Red;
+            #region Show Currency 
+            // Show Currency Image
+            GuiImagePanel showCurrencyImage = new GuiImagePanel(
+                // Texture2D
+                SpriteContainer.sprite["coin"],
+                // Position
+                new Vector2(GraphicsSetting.ScreenSize.X - 75, 10),
+                // Scale
+                new Vector2(1, 1),
+                // Layer Depth
+                0.9f,
+                // Origin
+                OriginPositionEnum.TopRight
+                );
+            Instantiate(showCurrencyImage);
 
-				Instantiate(guiButton);
-			}
-			#endregion
+            // Show Currency Text
+            showCurrencyText = new GuiText(
+                // SpriteFont
+                SpriteContainer.normalFont,
+                // Texture2D
+                "Money: ?",
+                // Position
+                new Vector2(5, 6),
+                // Scale
+                new Vector2(0.4f, 0.4f),
+                // Layer Depth
+                0.9f,
+                // Origin
+                OriginPositionEnum.MidRight
+                );
+            showCurrencyText.ParentGUI = showCurrencyImage;
+            showCurrencyText.Transform.Position += showCurrencyText.ParentGUI.Transform.Position;
+            Instantiate(showCurrencyText);
+            #endregion
 
-			#region Show Currency 
-			// Show Currency Image
-			GuiImagePanel showCurrencyImage = new GuiImagePanel(
-				// Texture2D
-				SpriteContainer.sprite["Pixel"],
-				// Position
-				new Vector2(GraphicsSetting.ScreenSize.X - 100, 20),
-				// Scale
-				new Vector2(40,40),
-				// Layer Depth
-				0.9f,
-				// Origin
-				OriginPositionEnum.TopRight
-				);
-			Instantiate(showCurrencyImage);
+            #region Show Life
+            // Show Life Image
+            GuiImagePanel showLifeImage = new GuiImagePanel(
+                // Texture2D
+                SpriteContainer.sprite["heart"],
+                // Position
+                new Vector2(50, 10),
+                // Scale
+                new Vector2(0.2f, 0.2f),
+                // Layer Depth
+                0.9f,
+                // Origin
+                OriginPositionEnum.TopRight
+                );
+            Instantiate(showLifeImage);
 
-			// Show Currency Text
-			GuiText showCurrencyText = new GuiText(
-				// SpriteFont
-				SpriteContainer.normalFont,
-				// Texture2D
-				"Money: ?",
-				// Position
-				new Vector2(5, 10),
-				// Scale
-				new Vector2(0.4f, 0.4f),
-				// Layer Depth
-				0.9f,
-				// Origin
-				OriginPositionEnum.MidRight
-				);
-			showCurrencyText.ParentGUI = showCurrencyImage;
-			showCurrencyText.Transform.Position += showCurrencyText.ParentGUI.Transform.Position;
-			Instantiate(showCurrencyText);
-			#endregion
+            // Show Life Text
+            showLifeText = new GuiText(
+                // SpriteFont
+                SpriteContainer.normalFont,
+                // Texture2D
+                "Life: ?",
+                // Position
+                new Vector2(5, 7),
+                // Scale
+                new Vector2(0.4f, 0.4f),
+                // Layer Depth
+                0.9f,
+                // Origin
+                OriginPositionEnum.MidRight
+                );
+            showLifeText.ParentGUI = showLifeImage;
+            showLifeText.Transform.Position += showLifeText.ParentGUI.Transform.Position + new Vector2(showLifeText.ParentGUI.Transform.Scale.X, 0);
+            Instantiate(showLifeText);
+            #endregion
 
-			#region Show Life
-			// Show Life Image
-			GuiImagePanel showLifeImage = new GuiImagePanel(
-				// Texture2D
-				SpriteContainer.sprite["Pixel"],
-				// Position
-				new Vector2(20, 20),
-				// Scale
-				new Vector2(40, 40),
-				// Layer Depth
-				0.9f,
-				// Origin
-				OriginPositionEnum.TopLeft
-				);
-			Instantiate(showLifeImage);
+            #region Top Panel
+            // Button Image Panel
+            GuiImagePanel topImagePanel = new GuiImagePanel(
+                // Texture2D
+                SpriteContainer.sprite["Pixel"],
+                // Position
+                new Vector2(0, 0),
+                // Scale
+                new Vector2(GraphicsSetting.ScreenSize.X, 50),
+                // Layer Depth
+                0.5f,
+                // Origin
+                OriginPositionEnum.TopLeft
+                );
+            topImagePanel.Color = Color.Black;
+            Instantiate(topImagePanel);
+            #endregion
 
-			// Show Life Text
-			GuiText showLifeText = new GuiText(
-				// SpriteFont
-				SpriteContainer.normalFont,
-				// Texture2D
-				"Life: ?",
-				// Position
-				new Vector2(5, 10),
-				// Scale
-				new Vector2(0.4f, 0.4f),
-				// Layer Depth
-				0.9f,
-				// Origin
-				OriginPositionEnum.MidRight
-				);
-			showLifeText.ParentGUI = showLifeImage;
-			showLifeText.Transform.Position += showLifeText.ParentGUI.Transform.Position + new Vector2(showLifeText.ParentGUI.Transform.Scale.X,0);
-			Instantiate(showLifeText);
-			#endregion
-		}
+            UpdateLiveCoin();
+        }
+
+        public void TowerButtom(GuiImagePanel _buttonImagePanel, int _rowNumber, string _face, PickTowerType _pickTower)
+        {
+            GuiButton guiButton = new GuiButton(
+                // Texture2D
+                SpriteContainer.sprite[_face],
+                // Position
+                new Vector2(50 + _rowNumber * 100, -85),
+                // Scale
+                new Vector2(0.3f, 0.3f),
+                // Layer Depth
+                0.9f,
+                // Origin
+                OriginPositionEnum.TopLeft
+            );
+
+            guiButton.ParentGUI = _buttonImagePanel;
+            guiButton.Transform.Position += _buttonImagePanel.Transform.Position;
+            guiButton.Color = Color.White;
+            guiButton.IsHoveringColor = Color.Green;
+            guiButton.OnClick = () => { setTowers.SetTowerType(_pickTower); };
+            Instantiate(guiButton);
+        }
 
         public void MadeSpawer()
         {
             foreach (GameObject item in gameObjects)
             {
-                if(item is Tile == true && (item as Tile).TileType == TileTypeEnum.Spawn)
+                if (item is Tile == true && (item as Tile).TileType == TileTypeEnum.Spawn)
                 {
                     Instantiate(new Spawner(
-                        item.Transform.Position + 
+                        item.Transform.Position +
                         new Vector2(sizeOfTile / 2, sizeOfTile / 2)
                         ));
                 }
@@ -187,10 +220,10 @@ namespace Dania_Defence_Project
                 for (int y = 0; y < GridNumber; y++)
                 {
                     Tile tile = new Tile(sizeOfTile);
-                    tile.Transform.Scale = new Vector2(sizeOfTile, sizeOfTile);
+                    tile.Transform.Scale = new Vector2(sizeOfTile / 256f, sizeOfTile / 256f);
                     tile.Transform.Position = new Vector2(sizeOfTile * x, sizeOfTile * y);
                     tile.Transform.Position -= new Vector2(sizeOfTile * (GridNumber / 2), sizeOfTile * (GridNumber / 2));
-                    tile.Color = Color.ForestGreen;
+                    tile.Color = Color.White;
                     tile.LayerDepth = 0.01f;
                     if (tile.Transform.Position == new Vector2(0, 0))
                     {
@@ -282,12 +315,18 @@ namespace Dania_Defence_Project
             BlockTileMader(_tile, -8, -5);
             BlockTileMader(_tile, -9, -5);
         }
-        public void BlockTileMader(Tile _tile,int _x,int _y)
+        public void BlockTileMader(Tile _tile, int _x, int _y)
         {
             if (_tile.Transform.Position == new Vector2(-sizeOfTile * _x, -sizeOfTile * _y))
             {
                 _tile.TileType = TileTypeEnum.Block;
             }
+        }
+
+        public void UpdateLiveCoin()
+        {
+            showCurrencyText.Text = currentLive.ToString();
+            showLifeText.Text = currentCoin.ToString();
         }
     }
 }

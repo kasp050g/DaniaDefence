@@ -13,7 +13,7 @@ namespace Dania_Defence_Project
 		/// <param name="minValue">minValue</param>
 		/// <param name="maxValue">maxValue</param>
 		/// <returns></returns>
-		public static float GetRandomValue(int minValue, int maxValue)
+		public static int GetRandomValue(int minValue, int maxValue)
 		{
 			return random.Next(minValue, maxValue);
 		}
@@ -23,7 +23,7 @@ namespace Dania_Defence_Project
 		/// </summary>
 		/// <param name="value">maxValue</param>
 		/// <returns></returns>
-		public static float GetRandomValue(int value)
+		public static int GetRandomValue(int value)
 		{
 			return GetRandomValue(0, value);
 		}

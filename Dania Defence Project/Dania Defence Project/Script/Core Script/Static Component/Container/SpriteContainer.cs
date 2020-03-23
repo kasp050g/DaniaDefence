@@ -27,11 +27,23 @@ namespace Dania_Defence_Project
             AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Kenneth"), "Tower_Kenneth");
             AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Mikael"), "Tower_Mikael");
             AddSprite(content.Load<Texture2D>("Texture/Towers/Tower_Milo"), "Tower_Milo");
+            // Tile
+            AddSprite(content.Load<Texture2D>("Texture/Tile/Grass_Tile"), "Grass_Tile");
+            AddSprite(content.Load<Texture2D>("Texture/Tile/Stone_Tile"), "Stone_Tile");
+            // Icon
+            AddSprite(content.Load<Texture2D>("Texture/Icon/Coin1"), "coin");
+            AddSprite(content.Load<Texture2D>("Texture/Icon/heart"), "heart");
             // Students
             AddSprite(content.Load<Texture2D>("Texture/Students/Student_Kasper"), "Student_Kasper");
             AddSprite(content.Load<Texture2D>("Texture/Students/Student_Gordon"), "Student_Gordon");
             AddSprite(content.Load<Texture2D>("Texture/Students/Student_Casper"), "Student_Casper");
             AddSprite(content.Load<Texture2D>("Texture/Students/Student_Marius"), "Student_Marius");
+            // Face
+            AddSprite(content.Load<Texture2D>("Texture/Face/Dennis_Sprite"), "Face_Dennis");
+            AddSprite(content.Load<Texture2D>("Texture/Face/Jonathan_Sprite"), "Face_Jonathan");
+            AddSprite(content.Load<Texture2D>("Texture/Face/Kenneth_Sprite"), "Face_Kennet");
+            AddSprite(content.Load<Texture2D>("Texture/Face/Mikael_Sprite"), "Face_Mikae");
+            AddSprite(content.Load<Texture2D>("Texture/Face/Milo_Sprite"), "Face_Milo");
             // Projectiles
             AddSprite(content.Load<Texture2D>("Texture/Projectiles/Projectile_CSharp"), "Projectile_CSharp");
             AddSprite(content.Load<Texture2D>("Texture/Projectiles/Projectile_Dennis"), "Projectile_Dennis");

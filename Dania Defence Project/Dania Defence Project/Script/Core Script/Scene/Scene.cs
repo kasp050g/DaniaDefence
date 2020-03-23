@@ -94,7 +94,7 @@ namespace Dania_Defence_Project
 					gameObject.Draw(spriteBatch);
                     if (gameObject is Tower)
                     {
-                        DrawCollisionBox(gameObject as Tower, spriteBatch, SpriteContainer.sprite["Pixel"]);
+                        //DrawCollisionBox(gameObject as Tower, spriteBatch, SpriteContainer.sprite["Pixel"]);
                     }
                 }
 

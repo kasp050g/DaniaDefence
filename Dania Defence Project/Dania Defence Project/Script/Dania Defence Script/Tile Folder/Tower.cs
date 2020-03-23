@@ -21,6 +21,7 @@ namespace Dania_Defence_Project
         protected Unit myTarget;
         protected TowerProjectile myProjectile;
         protected bool myTargetIsInRange;
+        protected float layerDepthPosition;
 
         public float FireRate { get => fireRate; set => fireRate = value; }
         public float CurrentFireRate { get => currentFireRate; set => currentFireRate = value; }
@@ -55,6 +56,8 @@ namespace Dania_Defence_Project
             transform.Position = _position;
             transform.Scale = _scale;
             tileSize = _tileSize;
+
+            layerDepthPosition = _position.Y / 1000000;
         }
         public Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize)
         {
@@ -64,6 +67,7 @@ namespace Dania_Defence_Project
             layerDepth = _layerDepth;
             originPositionEnum = _origin;
             tileSize = _tileSize;
+
         }
         public override void Awake()
         {
@@ -81,7 +85,26 @@ namespace Dania_Defence_Project
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            spriteBatch.Draw(
+                // Texture2D
+                this.sprite,
+                // Postion
+                this.transform.Position,
+                // Source Rectangle
+                null,
+                // Color
+                this.color,
+                // Rotation
+                MathHelper.ToRadians(this.transform.Rotation),
+                // Origin
+                this.transform.Origin,
+                // Scale
+                this.transform.Scale,
+                // SpriteEffects
+                this.spriteEffects,
+                // LayerDepth
+                this.layerDepth + layerDepthPosition
+            );
         }
 
         public virtual void FireProjectile()
@@ -119,15 +142,22 @@ namespace Dania_Defence_Project
             CheckIfTargetIsInRange();
             if (MyTarget == null)
             {
+                List<Unit> tmp = new List<Unit>();
                 foreach (GameObject item in myScene.GameObjects)
                 {
                     if (item is Unit)
                     {
                         if (TowerRangeCollision.Intersects((item as Unit).UnitCollision))
                         {
-                            MyTarget = (item as Unit);
+                            tmp.Add((item as Unit));
+                            //MyTarget = (item as Unit);
                         }
                     }
+                }
+
+                if (tmp.Count > 0)
+                {
+                    myTarget = tmp[Helper.GetRandomValue(0, tmp.Count - 1)];
                 }
             }
             else if (currentFireRate <= 0)

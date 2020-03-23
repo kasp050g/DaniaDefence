@@ -11,7 +11,15 @@ namespace Dania_Defence_Project
     public class SetTowers : Component
     {
         GameObject mouseTile;
-        public int sizeOfTile = 100;
+        int sizeOfTile = 100;
+        List<Tower> towers = new List<Tower>();
+        Tower currentTower;
+        PickTowerType pickTowerType;
+
+        public GameObject MouseTile { get => mouseTile; set => mouseTile = value; }
+        public int SizeOfTile { get => sizeOfTile; set => sizeOfTile = value; }
+        public List<Tower> Towers { get => towers; set => towers = value; }
+
         public SetTowers(int _sizeOfTile)
         {
             this.sizeOfTile = _sizeOfTile;
@@ -19,14 +27,15 @@ namespace Dania_Defence_Project
         public override void Awake()
         {
             base.Awake();
-			Instantiate(new _WaveTest(sizeOfTile));
-			_Astar_Test_For_unit.TileSize = sizeOfTile;
+            Instantiate(new _WaveTest(sizeOfTile));
+            _Astar_Test_For_unit.TileSize = sizeOfTile;
         }
         public override void Start()
         {
             base.Start();
             MadeTileOnMouse();
-		}
+            pickTowerType = PickTowerType.Milo;
+        }
         public override void Update()
         {
             base.Update();
@@ -44,18 +53,11 @@ namespace Dania_Defence_Project
                     {
                         (item as Tile).ChangeTile(TileTypeEnum.Tower);
                         Destroy((item as Tile).Tower);
-                        // Tile
-                        int tmpTileSize = (item as Tile).TileSize;
-                        float towerSize = (float)tmpTileSize / 400;
-                        
-                        Dennis_Tower tmp = new Dennis_Tower(
-                            (item as Tile).Transform.Position + new Vector2(tmpTileSize / 2, (float)tmpTileSize * 0.98f),
-                            new Vector2(towerSize, towerSize),
-                            tmpTileSize
-                            );
 
-                        (item as Tile).Tower = tmp;
-                        Instantiate(tmp);
+                        currentTower = MadeNewTower((item as Tile).Transform.Position, pickTowerType);
+
+                        (item as Tile).Tower = currentTower;
+                        Instantiate(currentTower);
                     }
                 }
             }
@@ -87,7 +89,6 @@ namespace Dania_Defence_Project
                 {
                     positonX -= sizeOfTile;
                 }
-
                 if (positonY < 0)
                 {
                     positonY -= sizeOfTile;
@@ -111,6 +112,65 @@ namespace Dania_Defence_Project
             mouseTile.Transform.Scale = new Vector2(sizeOfTile, sizeOfTile);
             mouseTile.LayerDepth = 0.5f;
             Instantiate(mouseTile);
+        }
+
+
+
+        public void SetTowerType(PickTowerType _pickTowerType)
+        {
+            pickTowerType = _pickTowerType;
+        }
+
+        public Tower MadeNewTower(Vector2 _position, PickTowerType _pickTowerType)
+        {
+            // Tile
+            int tmpTileSize = sizeOfTile;
+            float towerSize = (float)tmpTileSize / 400;
+
+            Tower tmp = new Tower();
+
+            switch (_pickTowerType)
+            {
+                case PickTowerType.Dennis:
+                    tmp = new Dennis_Tower(
+                        _position + new Vector2(tmpTileSize / 2, (float)tmpTileSize * 0.98f),
+                        new Vector2(towerSize, towerSize),
+                        tmpTileSize
+                    );
+                    break;
+                case PickTowerType.Milo:
+                    tmp = new Milo_Tower(
+                        _position + new Vector2(tmpTileSize / 2, (float)tmpTileSize * 0.98f),
+                        new Vector2(towerSize, towerSize),
+                        tmpTileSize
+                    );
+                    break;
+                case PickTowerType.Kenneth:
+                    tmp = new Kenneth_Tower(
+                        _position + new Vector2(tmpTileSize / 2, (float)tmpTileSize * 0.98f),
+                        new Vector2(towerSize, towerSize),
+                        tmpTileSize
+                    );
+                    break;
+                case PickTowerType.Jonathan:
+                    tmp = new Jonathan_Tower(
+                        _position + new Vector2(tmpTileSize / 2, (float)tmpTileSize * 0.98f),
+                        new Vector2(towerSize, towerSize),
+                        tmpTileSize
+                    );
+                    break;
+                case PickTowerType.Mikael:
+                    tmp = new Mikael_Tower(
+                        _position + new Vector2(tmpTileSize / 2, (float)tmpTileSize * 0.98f),
+                        new Vector2(towerSize, towerSize),
+                        tmpTileSize
+                    );
+                    break;
+                default:
+                    break;
+            }
+
+            return tmp;
         }
     }
 }

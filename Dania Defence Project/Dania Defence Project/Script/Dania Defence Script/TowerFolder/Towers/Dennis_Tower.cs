@@ -10,23 +10,22 @@ namespace Dania_Defence_Project
 {
 	public class Dennis_Tower : Tower
 	{
-
         #region Constructors
 
         public Dennis_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize)
         {
+
         }
 
         public Dennis_Tower()
         {
+
         }
 
         public Dennis_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
         {
+
         }
-
-
-
 
         #endregion
 

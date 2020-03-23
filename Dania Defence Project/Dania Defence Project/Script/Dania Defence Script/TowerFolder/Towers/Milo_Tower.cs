@@ -8,80 +8,87 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dania_Defence_Project
 {
-	public class Milo_Tower : Towers
+	public class Milo_Tower : Tower
 	{
-		#region Constructors
-		public Milo_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, 
-			OriginPositionEnum _originPositionEnum, float _speed, float _fireRate) : base(_sprite, _position, _scale, _layerDepth, _originPositionEnum, _speed, _fireRate)
-		{
+        #region Constructors
 
-		}
+        public Milo_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize)
+        {
 
-		public Milo_Tower()
-		{
-			
-		}
+        }
 
-		public void MakeTower()
-		{
-			sprite = SpriteContainer.sprite["Milo"];
-			transform.Position = new Vector2(180, 330);
-			Transform.Scale = new Vector2(0.25f, 0.25f);
-			layerDepth = 0.25f;
-			OriginPositionEnum = OriginPositionEnum.BottomMid;
-			this.speed = 150;
-			fireRate = 1f;
-		}
+        public Milo_Tower()
+        {
 
-		public override void Projectile()
-		{
-			//myProjectile = new TowerProjectile(
-			//	//Texture
-			//	SpriteContainer.sprite["PowerPoint"],
+        }
 
-			//	//Position
-			//	new Vector2(transform.Position.X, transform.Position.Y - 125),
+        public Milo_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
+        {
 
-			//	//Scale
-			//	new Vector2(0.5f, 0.5f),
+        }
 
-			//	//Layer Depth
-			//	0.2f,
 
-			//	//Origin
-			//	OriginPositionEnum.Mid,
 
-			//	//Speed
-			//	this.speed
-			//	);
 
-			Instantiate(myProjectile);
+        #endregion
 
-			base.Projectile();
-		}
-		#endregion
+        #region Methods
+        public override void Awake()
+        {
+            MakeTower();
+            base.Awake();
+        }
 
-		#region Methods
-		public override void Awake()
-		{
-			MakeTower();
-			base.Awake();
-		}
+        public override void Start()
+        {
+            base.Start();
+        }
 
-		public override void Start()
-		{
-			base.Start();
-		}
+        public override void Update()
+        {
+            base.Update();
+        }
 
-		public override void Update()
-		{
-			base.Update();
-		}
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        }
 
-		public override void Draw(SpriteBatch spriteBatch)
-		{
-			base.Draw(spriteBatch);
-		}
-		#endregion
-	}
+        public void MakeTower()
+        {
+            sprite = SpriteContainer.sprite["Tower_Milo"];
+            transform.Scale = new Vector2((float)TileSize / 400, (float)TileSize / 400);
+            layerDepth = 0.8f;
+            originPositionEnum = OriginPositionEnum.BottomMid;
+            this.speed = 300;
+            fireRate = 1f;
+        }
+
+        public override void FireProjectile()
+        {
+            myProjectile = new TowerProjectile(
+                // Mytarget Unit
+                myTarget,
+                // Texture
+                SpriteContainer.sprite["Projectile_PowerPoint"],
+                // Position
+                new Vector2(transform.Position.X, transform.Position.Y - ((float)tileSize / 2f)),
+                // Scale
+                new Vector2(0.5f, 0.5f),
+                // Layer Depth
+                0.95f,
+                // Origin
+                OriginPositionEnum.Mid,
+                // Speed
+                this.speed,
+                // Damage
+                damage
+            );
+
+            Instantiate(myProjectile);
+
+            base.FireProjectile();
+        }
+        #endregion
+    }
 }
