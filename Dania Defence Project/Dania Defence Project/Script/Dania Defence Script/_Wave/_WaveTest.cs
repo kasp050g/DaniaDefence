@@ -13,6 +13,8 @@ namespace Dania_Defence_Project
 		Vector2 startPosition;
 		int tileSize;
 
+        float time = 1f;
+        float currentTime;
 		public _WaveTest(int _tileSize)
 		{
 			this.tileSize = _tileSize;
@@ -41,6 +43,16 @@ namespace Dania_Defence_Project
 			{
 				SwaperUnit();
 			}
+
+            if(currentTime > 0)
+            {
+                currentTime -= Time.deltaTime;
+            }
+            else
+            {
+                currentTime = time;
+                SwaperUnit();
+            }
 		}
 
 		public void SwaperUnit()

@@ -61,7 +61,8 @@ namespace Dania_Defence_Project
             layerDepth = 0.8f;
             originPositionEnum = OriginPositionEnum.BottomMid;
             this.speed = 300;
-            fireRate = 0.01f;
+            fireRate = 0.1f;
+            damage = 10;
         }
 
         public override void FireProjectile()

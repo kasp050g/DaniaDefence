@@ -78,14 +78,13 @@
     <Compile Include="Script\Dania Defence Script\Tile Folder\Spawner.cs" />
     <Compile Include="Script\Dania Defence Script\Tile Folder\Tile.cs" />
     <Compile Include="Script\Dania Defence Script\Tile Folder\TileTypeEnum.cs" />
-    <Compile Include="Script\Dania Defence Script\Tile Folder\Tower.cs" />
+    <Compile Include="Script\Dania Defence Script\TowerFolder\Tower.cs" />
     <Compile Include="Script\Dania Defence Script\TowerFolder\Towers\Dennis_Tower.cs" />
     <Compile Include="Script\Dania Defence Script\TowerFolder\Towers\Jonathan_Tower.cs" />
     <Compile Include="Script\Dania Defence Script\TowerFolder\Towers\Kenneth_Tower.cs" />
     <Compile Include="Script\Dania Defence Script\TowerFolder\Towers\Mikael_Tower.cs" />
     <Compile Include="Script\Dania Defence Script\TowerFolder\Towers\Milo_Tower.cs" />
     <Compile Include="Script\Dania Defence Script\TowerFolder\TowerProjectile.cs" />
-    <Compile Include="Script\Dania Defence Script\TowerFolder\Towers.cs" />
     <Compile Include="Script\Dania Defence Script\Unit\Unit_Casper.cs" />
     <Compile Include="Script\Dania Defence Script\Unit\Unit_GordenFreeMan.cs" />
     <Compile Include="Script\Dania Defence Script\Unit\Unit_Kasper.cs" />
