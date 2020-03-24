@@ -134,7 +134,7 @@ namespace Dania_Defence_Project
 
 			foreach (GameObject x in Guis)
 			{
-				if ((x is GUI) && mouseRectangle.Intersects((x as GUI).GUImouseBlockCollision))
+				if ((x is GUI) && mouseRectangle.Intersects((x as GUI).GUImouseBlockCollision) && x.IsActive == true)
 				{
 					IsMouseOverUI = true;
 				}

@@ -151,9 +151,11 @@ namespace Dania_Defence_Project
                     break;
                 case TileTypeEnum.Center:
                     tower.IsActive = false;
+                    Sprite = SpriteContainer.sprite["Hole_Tile"];
                     break;
                 case TileTypeEnum.Spawn:
                     tower.IsActive = false;
+                    Sprite = SpriteContainer.sprite["School_Tile"];
                     break;
                 default:
                     break;

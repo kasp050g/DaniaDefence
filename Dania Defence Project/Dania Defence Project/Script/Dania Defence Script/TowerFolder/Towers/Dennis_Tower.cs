@@ -10,24 +10,30 @@ namespace Dania_Defence_Project
 {
 	public class Dennis_Tower : Tower
 	{
+        #region Fields
+
+        #endregion
+
         #region Constructors
 
         public Dennis_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize, int _towerCost) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize, _towerCost)
         {
+            TowerStat();
         }
 
         public Dennis_Tower()
         {
-
+            TowerStat();
         }
 
         public Dennis_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
         {
-
+            TowerStat();
         }
 
         public Dennis_Tower(int _towerCost) : base(_towerCost)
         {
+            TowerStat();
         }
 
         #endregion
@@ -60,10 +66,15 @@ namespace Dania_Defence_Project
             transform.Scale = new Vector2((float)TileSize / 400, (float)TileSize / 400);
             layerDepth = 0.8f;
             originPositionEnum = OriginPositionEnum.BottomMid;
+        }
+
+        public void TowerStat()
+        {
             this.speed = 300;
-            fireRate = 0.5f;
-            damage = 10;
-            towerCost = 5;
+            this.fireRate = 0.5f;
+            this.damage = 10;
+            this.towerCost = 5;
+            this.range = 2;
         }
 
         public override void FireProjectile()

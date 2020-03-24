@@ -163,7 +163,7 @@ namespace Dania_Defence_Project
 
                 if (tmp.Count > 0)
                 {
-                    myTarget = tmp[Helper.GetRandomValue(0, tmp.Count - 1)];
+                    myTarget = tmp[Helper.GetRandomValue(0, tmp.Count)];
                 }
             }
             else if (currentFireRate <= 0)

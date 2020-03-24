@@ -30,6 +30,8 @@ namespace Dania_Defence_Project
             // Tile
             AddSprite(content.Load<Texture2D>("Texture/Tile/Grass_Tile"), "Grass_Tile");
             AddSprite(content.Load<Texture2D>("Texture/Tile/Stone_Tile"), "Stone_Tile");
+            AddSprite(content.Load<Texture2D>("Texture/Tile/School_Tile"), "School_Tile");
+            AddSprite(content.Load<Texture2D>("Texture/Tile/Hole_Tile"), "Hole_Tile");
             // Icon
             AddSprite(content.Load<Texture2D>("Texture/Icon/Coin1"), "coin");
             AddSprite(content.Load<Texture2D>("Texture/Icon/heart"), "heart");

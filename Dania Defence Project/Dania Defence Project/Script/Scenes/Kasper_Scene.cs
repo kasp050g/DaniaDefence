@@ -274,12 +274,14 @@ namespace Dania_Defence_Project
                     if (tile.Transform.Position == new Vector2(0, 0))
                     {
                         tile.TileType = TileTypeEnum.Center;
-                        tile.Color = Color.MediumVioletRed;
+                        
+                        
                     }
                     if (tile.Transform.Position == new Vector2(-sizeOfTile * 10, 0))
                     {
                         tile.TileType = TileTypeEnum.Spawn;
-                        tile.Color = Color.Red;
+                        
+                        
                     }
                     BlockTile(tile);
                     Instantiate(tile);

@@ -15,7 +15,7 @@ namespace Dania_Defence_Project
 
         private MouseState currentMouse;
         private MouseState previousMouse;
-        private bool isHovering;
+        protected bool isHovering;
 
         protected Action onClick;
         protected SpriteFont font;

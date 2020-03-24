@@ -54,8 +54,9 @@ namespace Dania_Defence_Project
 		public override void Awake()
 		{
             knowlegde.CurrentValue = 0;
-            knowlegde.MaxValue = 100; // sætter hvad max værdien for knowlegde kan være (hvor meget hp units har)
-            movementspeed.MaxValue = 100; // sætter hvor hurtigt units kan bevæge sig
+            //knowlegde.MaxValue = 100; // sætter hvad max værdien for knowlegde kan være (hvor meget hp units har)
+            //movementspeed.MaxValue = 100; // sætter hvor hurtigt units kan bevæge sig
+            movementspeed.CurrentValue = movementspeed.MaxValue;
 
             originPositionEnum = OriginPositionEnum.Mid;
 			base.Awake();
@@ -99,6 +100,8 @@ namespace Dania_Defence_Project
             unitHealthBar.StartFadeOut();
             if (knowlegde.CurrentValue >= knowlegde.MaxValue)
             {
+                (myScene as Kasper_Scene).currentCoin += moenyOnDeath;
+                (myScene as Kasper_Scene).UpdateLiveCoin();
                 Die();
             }
         }
@@ -119,8 +122,7 @@ namespace Dania_Defence_Project
 
         public void Die()
         {
-            (myScene as Kasper_Scene).currentCoin += moenyOnDeath;
-            (myScene as Kasper_Scene).UpdateLiveCoin();
+
             isAlive = false;
             //onUnitGraduation();
             Destroy(this);
@@ -160,7 +162,7 @@ namespace Dania_Defence_Project
 			{
 				velocity.Normalize();
 
-				transform.Position += velocity * moveSpeed * Time.deltaTime;
+				transform.Position += velocity * movementspeed.CurrentValue * Time.deltaTime;
 			}
 
 			double c = Math.Sqrt(tileSize * tileSize + tileSize * tileSize);		

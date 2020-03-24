@@ -14,20 +14,22 @@ namespace Dania_Defence_Project
 
         public Mikael_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize, int _towerCost) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize, _towerCost)
         {
+            TowerStat();
         }
 
         public Mikael_Tower()
         {
-
+            TowerStat();
         }
 
         public Mikael_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
         {
-            
+            TowerStat();
         }
 
         public Mikael_Tower(int _towerCost) : base(_towerCost)
         {
+            TowerStat();
         }
 
 
@@ -63,10 +65,16 @@ namespace Dania_Defence_Project
             transform.Scale = new Vector2((float)TileSize / 400, (float)TileSize / 400);
             layerDepth = 0.8f;
             originPositionEnum = OriginPositionEnum.BottomMid;
-            this.speed = 300;
+
+        }
+
+        public void TowerStat()
+        {
+            this.speed = 400;
             fireRate = 0.1f;
             damage = 10;
             towerCost = 20;
+            range = 2;
         }
 
         public override void FireProjectile()

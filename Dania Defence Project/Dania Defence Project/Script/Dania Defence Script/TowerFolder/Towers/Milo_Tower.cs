@@ -14,24 +14,23 @@ namespace Dania_Defence_Project
 
         public Milo_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize, int _towerCost) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize, _towerCost)
         {
+            TowerStat();
         }
 
         public Milo_Tower()
         {
-
+            TowerStat();
         }
 
         public Milo_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
         {
-
+            TowerStat();
         }
 
         public Milo_Tower(int _towerCost) : base(_towerCost)
         {
+            TowerStat();
         }
-
-
-
 
         #endregion
 
@@ -63,10 +62,16 @@ namespace Dania_Defence_Project
             transform.Scale = new Vector2((float)TileSize / 400, (float)TileSize / 400);
             layerDepth = 0.8f;
             originPositionEnum = OriginPositionEnum.BottomMid;
-            this.speed = 300;
+            TowerStat();
+        }
+
+        public void TowerStat()
+        {
+            this.speed = 600;
             fireRate = 0.8f;
             damage = 35;
             towerCost = 25;
+            range = 4;
         }
 
         public override void FireProjectile()
