@@ -17,7 +17,7 @@ namespace Dania_Defence_Project
         public SetTowers setTowers;
 
         public int currentLive = 20;
-        public int currentCoin = 250;
+        public int currentCoin = 25;
 
         GuiText showCurrencyText;
         GuiText showLifeText;
@@ -25,7 +25,7 @@ namespace Dania_Defence_Project
         public override void Initialize()
         {
             base.Initialize();
-            setTowers = new SetTowers(sizeOfTile);
+            setTowers = new SetTowers(sizeOfTile,this);
             Instantiate(setTowers);
             MadeGrid();
             MakeGameGui();
@@ -70,16 +70,17 @@ namespace Dania_Defence_Project
                 // Origin
                 OriginPositionEnum.BottomLeft
                 );
+            buttonImagePanel.Color = Color.DimGray;
             Instantiate(buttonImagePanel);
             #endregion
 
             #region Tower buttons
             // Made Tower Button's
-            TowerButtom(buttonImagePanel, 0, "Face_Dennis", PickTowerType.Dennis);
-            TowerButtom(buttonImagePanel, 1, "Face_Jonathan", PickTowerType.Jonathan);
-            TowerButtom(buttonImagePanel, 2, "Face_Kennet", PickTowerType.Kenneth);
-            TowerButtom(buttonImagePanel, 3, "Face_Mikae", PickTowerType.Mikael);
-            TowerButtom(buttonImagePanel, 4, "Face_Milo", PickTowerType.Milo);
+            TowerButtom(buttonImagePanel, 0, "Face_Dennis", PickTowerType.Dennis,new Dennis_Tower(5));
+            TowerButtom(buttonImagePanel, 1, "Face_Jonathan", PickTowerType.Jonathan,new Jonathan_Tower(10));
+            TowerButtom(buttonImagePanel, 2, "Face_Kennet", PickTowerType.Kenneth,new Kenneth_Tower(15));
+            TowerButtom(buttonImagePanel, 3, "Face_Mikae", PickTowerType.Mikael,new Mikael_Tower(20));
+            TowerButtom(buttonImagePanel, 4, "Face_Milo", PickTowerType.Milo,new Milo_Tower(25));
             #endregion
 
             #region Show Currency 
@@ -175,13 +176,13 @@ namespace Dania_Defence_Project
             UpdateLiveCoin();
         }
 
-        public void TowerButtom(GuiImagePanel _buttonImagePanel, int _rowNumber, string _face, PickTowerType _pickTower)
+        public void TowerButtom(GuiImagePanel _buttonImagePanel, int _rowNumber, string _face, PickTowerType _pickTower,Tower _tower)
         {
-            GuiButton guiButton = new GuiButton(
+            TowerButton_GUI guiButton = new TowerButton_GUI(
                 // Texture2D
                 SpriteContainer.sprite[_face],
                 // Position
-                new Vector2(50 + _rowNumber * 100, -85),
+                new Vector2(50 + _rowNumber * 100, -100),
                 // Scale
                 new Vector2(0.3f, 0.3f),
                 // Layer Depth
@@ -191,11 +192,56 @@ namespace Dania_Defence_Project
             );
 
             guiButton.ParentGUI = _buttonImagePanel;
+            guiButton.Tower = _tower;
             guiButton.Transform.Position += _buttonImagePanel.Transform.Position;
             guiButton.Color = Color.White;
             guiButton.IsHoveringColor = Color.Green;
             guiButton.OnClick = () => { setTowers.SetTowerType(_pickTower); };
             Instantiate(guiButton);
+            TowerCost(
+                guiButton.Transform.Position + new Vector2(35,80),
+                guiButton.Tower.TowerCost.ToString()
+                );
+        }
+
+        public void TowerCost(Vector2 _position,string moneyCost)
+        {
+            // Show Currency Image
+            GuiImagePanel showCurrencyImage = new GuiImagePanel(
+                // Texture2D
+                SpriteContainer.sprite["coin"],
+                // Position
+                new Vector2(_position.X, _position.Y),
+                // Scale
+                new Vector2(0.6f, 0.6f),
+                // Layer Depth
+                0.95f,
+                // Origin
+                OriginPositionEnum.TopRight
+                );
+            Instantiate(showCurrencyImage);
+
+            // Show Currency Text
+            showCurrencyText = new GuiText(
+                // SpriteFont
+                SpriteContainer.normalFont,
+                // Texture2D
+                moneyCost,
+                // Position
+                new Vector2(
+                    5,
+                    0
+                    ),
+                // Scale
+                new Vector2(0.4f, 0.4f),
+                // Layer Depth
+                0.95f,
+                // Origin
+                OriginPositionEnum.TopLeft
+                );
+            showCurrencyText.ParentGUI = showCurrencyImage;
+            showCurrencyText.Transform.Position += showCurrencyText.ParentGUI.Transform.Position;
+            Instantiate(showCurrencyText);
         }
 
         public void MadeSpawer()
@@ -325,8 +371,8 @@ namespace Dania_Defence_Project
 
         public void UpdateLiveCoin()
         {
-            showCurrencyText.Text = currentLive.ToString();
-            showLifeText.Text = currentCoin.ToString();
+            showCurrencyText.Text = currentCoin.ToString();
+            showLifeText.Text = currentLive.ToString();
         }
     }
 }

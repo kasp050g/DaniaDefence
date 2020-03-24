@@ -12,9 +12,8 @@ namespace Dania_Defence_Project
 	{
         #region Constructors
 
-        public Mikael_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize)
+        public Mikael_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize, int _towerCost) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize, _towerCost)
         {
-            
         }
 
         public Mikael_Tower()
@@ -25,6 +24,10 @@ namespace Dania_Defence_Project
         public Mikael_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
         {
             
+        }
+
+        public Mikael_Tower(int _towerCost) : base(_towerCost)
+        {
         }
 
 
@@ -63,6 +66,7 @@ namespace Dania_Defence_Project
             this.speed = 300;
             fireRate = 0.1f;
             damage = 10;
+            towerCost = 20;
         }
 
         public override void FireProjectile()

@@ -22,6 +22,7 @@ namespace Dania_Defence_Project
         protected TowerProjectile myProjectile;
         protected bool myTargetIsInRange;
         protected float layerDepthPosition;
+        protected int towerCost = 115;
 
         public float FireRate { get => fireRate; set => fireRate = value; }
         public float CurrentFireRate { get => currentFireRate; set => currentFireRate = value; }
@@ -32,6 +33,7 @@ namespace Dania_Defence_Project
         public Vector2 Velocity { get => velocity; set => velocity = value; }
         public Unit MyTarget { get => myTarget; set => myTarget = value; }
         public TowerProjectile MyProjectile { get => myProjectile; set => myProjectile = value; }
+        public int TowerCost { get => towerCost; set => towerCost = value; }
         public virtual Rectangle TowerRangeCollision
         {
             get
@@ -45,11 +47,16 @@ namespace Dania_Defence_Project
             }
         }
 
+
         #endregion
 
         public Tower()
         {
 
+        }
+        public Tower(int _towerCost)
+        {
+            towerCost = _towerCost;
         }
         public Tower(Vector2 _position, Vector2 _scale, int _tileSize)
         {
@@ -59,7 +66,7 @@ namespace Dania_Defence_Project
 
             layerDepthPosition = _position.Y / 1000000;
         }
-        public Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize)
+        public Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize,int _towerCost)
         {
             sprite = _sprite;
             transform.Position = _position;
@@ -67,7 +74,7 @@ namespace Dania_Defence_Project
             layerDepth = _layerDepth;
             originPositionEnum = _origin;
             tileSize = _tileSize;
-
+            towerCost = _towerCost;
         }
         public override void Awake()
         {
@@ -76,7 +83,6 @@ namespace Dania_Defence_Project
         public override void Start()
         {
             base.Start();
-            Console.WriteLine(transform.Position);
         }
         public override void Update()
         {
@@ -169,7 +175,6 @@ namespace Dania_Defence_Project
                 else
                 {
                     FireProjectile();
-                    Console.WriteLine(myTarget);
                 }
             }
             else

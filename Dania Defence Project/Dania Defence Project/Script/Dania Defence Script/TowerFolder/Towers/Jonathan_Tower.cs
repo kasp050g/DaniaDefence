@@ -12,10 +12,7 @@ namespace Dania_Defence_Project
 	{
         #region Constructors
 
-        public Jonathan_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize)
-        {
 
-        }
 
         public Jonathan_Tower()
         {
@@ -25,6 +22,14 @@ namespace Dania_Defence_Project
         public Jonathan_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
         {
 
+        }
+
+        public Jonathan_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize, int _towerCost) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize, _towerCost)
+        {
+        }
+
+        public Jonathan_Tower(int _towerCost) : base(_towerCost)
+        {
         }
 
         #endregion
@@ -59,6 +64,8 @@ namespace Dania_Defence_Project
             originPositionEnum = OriginPositionEnum.BottomMid;
             this.speed = 300;
             fireRate = 1f;
+            damage = 40;
+            towerCost = 10;
         }
 
         public override void FireProjectile()

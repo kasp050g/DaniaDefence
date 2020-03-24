@@ -19,6 +19,7 @@ namespace Dania_Defence_Project
         protected Vector2 velocity;
         protected int tileSize;
         protected UnitHealthBar_GUI unitHealthBar;
+        protected int moenyOnDeath = 5;
 
         public virtual Rectangle UnitCollision
         {
@@ -118,6 +119,8 @@ namespace Dania_Defence_Project
 
         public void Die()
         {
+            (myScene as Kasper_Scene).currentCoin += moenyOnDeath;
+            (myScene as Kasper_Scene).UpdateLiveCoin();
             isAlive = false;
             //onUnitGraduation();
             Destroy(this);
@@ -170,6 +173,8 @@ namespace Dania_Defence_Project
 				}
 				else
 				{
+                    (myScene as Kasper_Scene).currentLive -= 1;
+                    (myScene as Kasper_Scene).UpdateLiveCoin();
                     Die();
                 }
 

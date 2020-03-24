@@ -16,13 +16,16 @@ namespace Dania_Defence_Project
         Tower currentTower;
         PickTowerType pickTowerType;
 
+        Kasper_Scene kasper_Scene;
+
         public GameObject MouseTile { get => mouseTile; set => mouseTile = value; }
         public int SizeOfTile { get => sizeOfTile; set => sizeOfTile = value; }
         public List<Tower> Towers { get => towers; set => towers = value; }
 
-        public SetTowers(int _sizeOfTile)
+        public SetTowers(int _sizeOfTile,Kasper_Scene _kasper_Scene)
         {
             this.sizeOfTile = _sizeOfTile;
+            this.kasper_Scene = _kasper_Scene;
         }
         public override void Awake()
         {
@@ -51,13 +54,16 @@ namespace Dania_Defence_Project
                 {
                     if (item is Tile == true && item.Transform.Position == mouseTile.Transform.Position && (item as Tile).TileType == TileTypeEnum.Empty)
                     {
-                        (item as Tile).ChangeTile(TileTypeEnum.Tower);
-                        Destroy((item as Tile).Tower);
+                        if (CheckTowerCost(pickTowerType))
+                        {
+                            (item as Tile).ChangeTile(TileTypeEnum.Tower);
+                            Destroy((item as Tile).Tower);
 
-                        currentTower = MadeNewTower((item as Tile).Transform.Position, pickTowerType);
+                            currentTower = MadeNewTower((item as Tile).Transform.Position, pickTowerType);
 
-                        (item as Tile).Tower = currentTower;
-                        Instantiate(currentTower);
+                            (item as Tile).Tower = currentTower;
+                            Instantiate(currentTower);
+                        }
                     }
                 }
             }
@@ -119,6 +125,46 @@ namespace Dania_Defence_Project
         public void SetTowerType(PickTowerType _pickTowerType)
         {
             pickTowerType = _pickTowerType;
+        }
+
+        public bool CheckTowerCost(PickTowerType _pickTowerType)
+        {
+            int number = 0;
+            switch (_pickTowerType)
+            {
+                case PickTowerType.Dennis:
+                    number = 5;
+                    break;
+                case PickTowerType.Milo:
+                    number = 25;
+                    break;
+                case PickTowerType.Kenneth:
+                    number = 15;
+                    break;
+                case PickTowerType.Jonathan:
+                    number = 10;
+                    break;
+                case PickTowerType.Mikael:
+                    number = 15;
+                    break;
+                default:
+                    break;
+            }
+
+            int currentMoney = kasper_Scene.currentCoin;
+
+            int tmp = currentMoney - number;
+
+            if(tmp >= 0)
+            {
+                kasper_Scene.currentCoin -= number;
+                kasper_Scene.UpdateLiveCoin();
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
 
         public Tower MadeNewTower(Vector2 _position, PickTowerType _pickTowerType)

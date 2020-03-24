@@ -12,9 +12,8 @@ namespace Dania_Defence_Project
 	{
         #region Constructors
 
-        public Kenneth_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize)
+        public Kenneth_Tower(Texture2D _sprite, Vector2 _position, Vector2 _scale, float _layerDepth, OriginPositionEnum _origin, int _tileSize, int _towerCost) : base(_sprite, _position, _scale, _layerDepth, _origin, _tileSize, _towerCost)
         {
-
         }
 
         public Kenneth_Tower()
@@ -25,6 +24,10 @@ namespace Dania_Defence_Project
         public Kenneth_Tower(Vector2 _position, Vector2 _scale, int _tileSize) : base(_position, _scale, _tileSize)
         {
 
+        }
+
+        public Kenneth_Tower(int _towerCost) : base(_towerCost)
+        {
         }
 
 
@@ -61,7 +64,9 @@ namespace Dania_Defence_Project
             layerDepth = 0.8f;
             originPositionEnum = OriginPositionEnum.BottomMid;
             this.speed = 300;
-            fireRate = 1f;
+            fireRate = 2f;
+            damage = 90;
+            towerCost = 15;
         }
 
         public override void FireProjectile()
