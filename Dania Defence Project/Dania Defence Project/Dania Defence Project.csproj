@@ -91,6 +91,7 @@
     <Compile Include="Script\Dania Defence Script\Unit\Unit_Kasper.cs" />
     <Compile Include="Script\Dania Defence Script\Unit\Unit_Marius.cs" />
     <Compile Include="Script\Dania Defence Script\World Editor\WorldEditor.cs" />
+    <Compile Include="Script\Dania Defence Script\_Astar\ThreadAstar.cs" />
     <Compile Include="Script\Dania Defence Script\_Astar\_Astar_Test.cs" />
     <Compile Include="Script\Dania Defence Script\_Astar\_Astar_Test_For_unit.cs" />
     <Compile Include="Script\Dania Defence Script\Unit\Unit.cs" />

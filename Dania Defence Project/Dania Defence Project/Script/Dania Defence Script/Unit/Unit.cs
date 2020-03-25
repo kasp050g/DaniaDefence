@@ -100,9 +100,8 @@ namespace Dania_Defence_Project
             unitHealthBar.StartFadeOut();
             if (knowlegde.CurrentValue >= knowlegde.MaxValue)
             {
-                (myScene as Kasper_Scene).currentCoin += moenyOnDeath;
-                (myScene as Kasper_Scene).UpdateLiveCoin();
-                Die();
+
+                Die(true);
             }
         }
 
@@ -120,8 +119,18 @@ namespace Dania_Defence_Project
 			myTarget = _Astar_Test_For_unit.GetAstarWay(myTarget,newTiles);
 		}
 
-        public void Die()
+        public void Die(bool gotKill)
         {
+            if (gotKill)
+            {
+                (myScene as Kasper_Scene).currentCoin += moenyOnDeath;
+                (myScene as Kasper_Scene).UpdateLiveCoin();
+            }
+            else
+            {
+                (myScene as Kasper_Scene).currentLive -= 1;
+                (myScene as Kasper_Scene).UpdateLiveCoin();
+            }
 
             isAlive = false;
             //onUnitGraduation();
@@ -175,11 +184,8 @@ namespace Dania_Defence_Project
 				}
 				else
 				{
-                    (myScene as Kasper_Scene).currentLive -= 1;
-                    (myScene as Kasper_Scene).UpdateLiveCoin();
-                    Die();
+                    Die(false);
                 }
-
 			}
 		}
 	}
