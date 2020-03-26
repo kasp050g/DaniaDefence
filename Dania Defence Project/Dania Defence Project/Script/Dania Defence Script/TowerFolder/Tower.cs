@@ -23,6 +23,7 @@ namespace Dania_Defence_Project
         protected bool myTargetIsInRange;
         protected float layerDepthPosition;
         protected int towerCost = 115;
+        protected string name;
 
         public float FireRate { get => fireRate; set => fireRate = value; }
         public float CurrentFireRate { get => currentFireRate; set => currentFireRate = value; }
@@ -34,6 +35,7 @@ namespace Dania_Defence_Project
         public Unit MyTarget { get => myTarget; set => myTarget = value; }
         public TowerProjectile MyProjectile { get => myProjectile; set => myProjectile = value; }
         public int TowerCost { get => towerCost; set => towerCost = value; }
+        public string Name { get => name; set => name = value; }
         public virtual Rectangle TowerRangeCollision
         {
             get
@@ -46,7 +48,6 @@ namespace Dania_Defence_Project
                     );
             }
         }
-
 
         #endregion
 

@@ -20,23 +20,19 @@ namespace Dania_Defence_Project
 
 		public void MakeScenes()
 		{
-			//WorldEditor_Scene worldEditor_Scene1 = new WorldEditor_Scene
+
+
+   //         PickScene pickScene = new PickScene
 			//{
-			//	Name = "World Editor Scene1"
+			//	Name = "Pick Scene"
 			//};
-			//Scenes.Add(worldEditor_Scene1);
+			//Scenes.Add(pickScene);
 
-			PickScene pickScene = new PickScene
-			{
-				Name = "Pick Scene"
-			};
-			Scenes.Add(pickScene);
-
-			MainScene mainScene = new MainScene
-			{
-				Name = "Main Scene"
-			};
-			Scenes.Add(mainScene);
+			//MainScene mainScene = new MainScene
+			//{
+			//	Name = "Main Scene"
+			//};
+			//Scenes.Add(mainScene);
 
 			Kasper_Scene kasper_Scene = new Kasper_Scene
 			{

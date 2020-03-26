@@ -16,22 +16,33 @@ namespace Dania_Defence_Project
         public int sizeOfTile = 100;
         public SetTowers setTowers;
 
-        public int currentLive = 20;
+        public int currentLive = 10;
         public int currentCoin = 25;
+        public int killStuff = 0;
 
         GuiText showCurrencyText;
         GuiText showLifeText;
 
+        ThreadAstar threadAstar = new ThreadAstar();
+        LossUI lossUI = new LossUI();
+        WinUI winUI = new WinUI();
+
         public override void Initialize()
         {
+            pauseGame = true;
+            Instantiate(new StartInfo());
             base.Initialize();
-            setTowers = new SetTowers(sizeOfTile,this);
+            setTowers = new SetTowers(sizeOfTile, this);
             Instantiate(setTowers);
             MadeGrid();
             MakeGameGui();
             MadeSpawer();
             _Astar_Test _Astar_Test = new _Astar_Test(sizeOfTile);
+            Astar_Tower_Check.TileSize = sizeOfTile;
             Instantiate(_Astar_Test);
+            Instantiate(lossUI);
+            Instantiate(winUI);
+            //Instantiate(threadAstar);
         }
 
         public override void OnSwitchToThisScene()
@@ -47,6 +58,16 @@ namespace Dania_Defence_Project
         public override void Update()
         {
             base.Update();
+            if (currentLive <= 0)
+            {
+                pauseGame = true;
+                lossUI.Open();
+            }
+            if(killStuff >= 47)
+            {
+                pauseGame = true;
+                winUI.Open();
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -76,11 +97,11 @@ namespace Dania_Defence_Project
 
             #region Tower buttons
             // Made Tower Button's
-            TowerButtom(buttonImagePanel, 0, "Face_Dennis", PickTowerType.Dennis,new Dennis_Tower(5));
-            TowerButtom(buttonImagePanel, 1, "Face_Jonathan", PickTowerType.Jonathan,new Jonathan_Tower(10));
-            TowerButtom(buttonImagePanel, 2, "Face_Kennet", PickTowerType.Kenneth,new Kenneth_Tower(15));
-            TowerButtom(buttonImagePanel, 3, "Face_Mikae", PickTowerType.Mikael,new Mikael_Tower(20));
-            TowerButtom(buttonImagePanel, 4, "Face_Milo", PickTowerType.Milo,new Milo_Tower(25));
+            TowerButtom(buttonImagePanel, 0, "Face_Dennis", PickTowerType.Dennis, new Dennis_Tower(5));
+            TowerButtom(buttonImagePanel, 1, "Face_Jonathan", PickTowerType.Jonathan, new Jonathan_Tower(10));
+            TowerButtom(buttonImagePanel, 2, "Face_Kennet", PickTowerType.Kenneth, new Kenneth_Tower(15));
+            TowerButtom(buttonImagePanel, 3, "Face_Mikae", PickTowerType.Mikael, new Mikael_Tower(20));
+            TowerButtom(buttonImagePanel, 4, "Face_Milo", PickTowerType.Milo, new Milo_Tower(25));
             #endregion
 
             #region Show Currency 
@@ -176,7 +197,7 @@ namespace Dania_Defence_Project
             UpdateLiveCoin();
         }
 
-        public void TowerButtom(GuiImagePanel _buttonImagePanel, int _rowNumber, string _face, PickTowerType _pickTower,Tower _tower)
+        public void TowerButtom(GuiImagePanel _buttonImagePanel, int _rowNumber, string _face, PickTowerType _pickTower, Tower _tower)
         {
             TowerButton_GUI guiButton = new TowerButton_GUI(
                 // Texture2D
@@ -199,12 +220,12 @@ namespace Dania_Defence_Project
             guiButton.OnClick = () => { setTowers.SetTowerType(_pickTower); };
             Instantiate(guiButton);
             TowerCost(
-                guiButton.Transform.Position + new Vector2(35,80),
+                guiButton.Transform.Position + new Vector2(35, 80),
                 guiButton.Tower.TowerCost.ToString()
                 );
         }
 
-        public void TowerCost(Vector2 _position,string moneyCost)
+        public void TowerCost(Vector2 _position, string moneyCost)
         {
             // Show Currency Image
             GuiImagePanel showCurrencyImage = new GuiImagePanel(
@@ -274,14 +295,14 @@ namespace Dania_Defence_Project
                     if (tile.Transform.Position == new Vector2(0, 0))
                     {
                         tile.TileType = TileTypeEnum.Center;
-                        
-                        
+
+
                     }
                     if (tile.Transform.Position == new Vector2(-sizeOfTile * 10, 0))
                     {
                         tile.TileType = TileTypeEnum.Spawn;
-                        
-                        
+
+
                     }
                     BlockTile(tile);
                     Instantiate(tile);

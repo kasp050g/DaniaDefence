@@ -74,6 +74,7 @@ namespace Dania_Defence_Project
             damage = 40;
             towerCost = 10;
             range = 3;
+            name = "Jonathan";
         }
 
         public override void FireProjectile()

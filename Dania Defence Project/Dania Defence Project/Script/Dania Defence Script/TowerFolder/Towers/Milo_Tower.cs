@@ -69,9 +69,10 @@ namespace Dania_Defence_Project
         {
             this.speed = 600;
             fireRate = 0.8f;
-            damage = 35;
+            damage = 45;
             towerCost = 25;
             range = 4;
+            name = "Milo";
         }
 
         public override void FireProjectile()

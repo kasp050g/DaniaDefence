@@ -66,11 +66,16 @@ namespace Dania_Defence_Project
 
         private void UpdateParentGUI()
         {
-            if (ParentGUI != null)
+            if (parentGUI != null)
             {
-                if (ShowGUI != ParentGUI.ShowGUI)
+                //if (ShowGUI != parentGUI.ShowGUI)
+                //{
+                //    ShowGUI = parentGUI.ShowGUI;
+                //}
+
+                if (ShowGUI != parentGUI.isActive)
                 {
-                    ShowGUI = ParentGUI.ShowGUI;
+                    ShowGUI = parentGUI.isActive;
                 }
             }
         }

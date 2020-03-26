@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Globalization;
 
 namespace Dania_Defence_Project
 {
@@ -14,6 +16,9 @@ namespace Dania_Defence_Project
         [STAThread]
         static void Main()
         {
+            if (Debugger.IsAttached)
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+
             using (var game = new GameWorld())
                 game.Run();
         }

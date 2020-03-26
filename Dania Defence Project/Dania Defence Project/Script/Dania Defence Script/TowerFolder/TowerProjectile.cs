@@ -92,7 +92,7 @@ namespace Dania_Defence_Project
         public void ProjectileMovement()
         {
             Vector2 tmpDirection = new Vector2(0, 0);
-            int offSet = 3;
+            int offSet = 4;
             //MouseState state = Mouse.GetState();
 
             //var mouseX = state.Position.X;

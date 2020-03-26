@@ -72,9 +72,10 @@ namespace Dania_Defence_Project
         {
             this.speed = 400;
             fireRate = 0.1f;
-            damage = 10;
+            damage = 5;
             towerCost = 20;
             range = 2;
+            name = "Mikael";
         }
 
         public override void FireProjectile()

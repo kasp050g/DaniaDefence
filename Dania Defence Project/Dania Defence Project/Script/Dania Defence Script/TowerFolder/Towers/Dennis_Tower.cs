@@ -71,10 +71,11 @@ namespace Dania_Defence_Project
         public void TowerStat()
         {
             this.speed = 300;
-            this.fireRate = 0.5f;
-            this.damage = 10;
+            this.fireRate = 0.25f;
+            this.damage = 5;
             this.towerCost = 5;
             this.range = 2;
+            name = "Dennis";
         }
 
         public override void FireProjectile()

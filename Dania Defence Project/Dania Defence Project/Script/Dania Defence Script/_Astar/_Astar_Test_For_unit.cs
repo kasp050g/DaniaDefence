@@ -24,26 +24,6 @@ namespace Dania_Defence_Project
 
 		public static int TileSize { get => tileSize; set => tileSize = value; }
 
-		//public _Astar_Test_For_unit(int _tileSize)
-		//{
-		//	this.tileSize = _tileSize;
-		//}
-		//public override void Awake()
-		//{
-		//	base.Awake();
-		//}
-		//public override void Start()
-		//{
-		//	base.Start();
-
-		//}
-		//public override void Update()
-		//{
-		//	base.Update();
-
-
-		//}
-
 		public static Tile GetAstarWay(Tile _myPosition,List<Tile> _tiles)
 		{
 			tiles.Clear();
@@ -53,23 +33,16 @@ namespace Dania_Defence_Project
 			start = _myPosition;
 			tiles = _tiles;
 
-			//GetTileList();
 			StartAndFindGoal(tiles);
 			MainLoop();
 
 			return currentTile;
 		}
 
-
-
 		public static void StartAndFindGoal(List<Tile> _tiles)
 		{
 			foreach (Tile item in _tiles)
 			{
-				//if (item.TileType == TileTypeEnum.Spawn)
-				//{
-				//	start = item;  //TODO set start to current Position
-				//}
 				if (item.TileType == TileTypeEnum.Center)
 				{
 					goal = item;
@@ -82,7 +55,6 @@ namespace Dania_Defence_Project
 		{
 			while (runAstar == true)
 			{
-
 				if (open.Count == 0)
 				{
 					break;
@@ -223,7 +195,6 @@ namespace Dania_Defence_Project
 					//BeforOpenAdd(item, 14);
 				}
 			}
-
 		}
 
 		public static void BeforOpenAdd(Tile cell, int gCost)
@@ -231,13 +202,6 @@ namespace Dania_Defence_Project
 			if (!close.Contains(cell) && !open.Contains(cell) && cell.TileType != TileTypeEnum.Block && cell.TileType != TileTypeEnum.Tower)
 			{
 				AddOpen(cell, gCost);
-			}
-			else
-			{
-				//if (cell.g > gCost)
-				//{
-				//	cell.g = gCost;
-				//}
 			}
 		}
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dania_Defence_Project
 {
-	public class _WaveTest : Component
+	public class _WaveTest : GameObject
 	{
 		Tile spawnTile;
 		Vector2 startPosition;

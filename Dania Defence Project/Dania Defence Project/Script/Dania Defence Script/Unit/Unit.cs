@@ -21,6 +21,8 @@ namespace Dania_Defence_Project
         protected UnitHealthBar_GUI unitHealthBar;
         protected int moenyOnDeath = 5;
 
+        private bool useAstarOnUnit = true;
+
         public virtual Rectangle UnitCollision
         {
             get
@@ -100,24 +102,24 @@ namespace Dania_Defence_Project
             unitHealthBar.StartFadeOut();
             if (knowlegde.CurrentValue >= knowlegde.MaxValue)
             {
-
+                (myScene as Kasper_Scene).killStuff += 1;
                 Die(true);
             }
         }
 
         public void UseAstar()
-		{
-			List<Tile> newTiles = new List<Tile>();
-			foreach (var item in myScene.GameObjects)
-			{
-				if (item is Tile)
-				{
-					newTiles.Add(item as Tile);
-				}
-			}
+        {
+            List<Tile> newTiles = new List<Tile>();
+            foreach (var item in myScene.GameObjects)
+            {
+                if (item is Tile)
+                {
+                    newTiles.Add(item as Tile);
+                }
+            }
 
-			myTarget = _Astar_Test_For_unit.GetAstarWay(myTarget,newTiles);
-		}
+            myTarget = _Astar_Test_For_unit.GetAstarWay(myTarget, newTiles);
+        }
 
         public void Die(bool gotKill)
         {
@@ -174,19 +176,23 @@ namespace Dania_Defence_Project
 				transform.Position += velocity * movementspeed.CurrentValue * Time.deltaTime;
 			}
 
-			double c = Math.Sqrt(tileSize * tileSize + tileSize * tileSize);		
+			double c = Math.Sqrt(tileSize * tileSize + tileSize * tileSize);
 
-			if (Vector2.Distance(transform.Position,myTarget.Transform.Position + new Vector2(tileSize / 2,tileSize / 2)) < 5)
-			{
-				if((myTarget as Tile).TileType != TileTypeEnum.Center)
-				{
-					UseAstar();
-				}
-				else
-				{
-                    Die(false);
+            if (useAstarOnUnit)
+            {
+                if (Vector2.Distance(transform.Position, myTarget.Transform.Position + new Vector2(tileSize / 2, tileSize / 2)) < 5)
+                {
+                    if ((myTarget as Tile).TileType != TileTypeEnum.Center)
+                    {
+                        UseAstar();
+                    }
+                    else
+                    {
+                        Die(false);
+                    }
                 }
-			}
-		}
+            }
+
+        }
 	}
 }

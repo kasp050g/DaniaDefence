@@ -62,7 +62,9 @@ namespace Dania_Defence_Project
 
         public void MakeText()
         {
-            text = "Tower Cost: ";
+            text = "Name: ";
+            text += tower.Name;
+            text += "\nTower Cost: ";
             text += tower.TowerCost.ToString();
             text += "\nFireRate: ";
             text += tower.FireRate.ToString();
@@ -85,7 +87,7 @@ namespace Dania_Defence_Project
                 // Position
                 new Vector2(10, -10),
                 // Scale
-                new Vector2(180f, 110f),
+                new Vector2(180f, 125f),
                 // Layer Depth
                 0.99f,
                 // Origin
@@ -111,7 +113,7 @@ namespace Dania_Defence_Project
                 OriginPositionEnum.MidRight
                 );
             _text.ParentGUI = _background;
-            _text.Transform.Position += _text.ParentGUI.Transform.Position + new Vector2(0,-110f);
+            _text.Transform.Position += _text.ParentGUI.Transform.Position + new Vector2(0,-125f);
             Instantiate(_text);
         }
     }

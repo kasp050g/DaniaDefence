@@ -172,7 +172,7 @@ namespace Dania_Defence_Project
                         // SpriteEffects
                         SpriteEffects.None,
                         // LayerDepth
-                        layerDepth + 0.05f
+                        layerDepth + 0.00001f
                     );
                 }
             }

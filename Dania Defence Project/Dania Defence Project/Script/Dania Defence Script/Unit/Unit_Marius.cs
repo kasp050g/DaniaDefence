@@ -39,7 +39,7 @@ namespace Dania_Defence_Project
 		public void MadeUnit()
 		{
 			sprite = SpriteContainer.sprite["Student_Marius"];
-			movementspeed.MaxValue = 250f;
+			movementspeed.MaxValue = 200f;
 			knowlegde.MaxValue = 50f;
 		}
 	}

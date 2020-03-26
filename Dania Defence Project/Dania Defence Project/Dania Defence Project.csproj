@@ -73,8 +73,11 @@
     <Compile Include="Script\Core Script\Static Component\MadeXml.cs" />
     <Compile Include="Script\Core Script\Static Component\Time.cs" />
     <Compile Include="Script\Dania Defence Script\Grid Folder\ShowGrid.cs" />
+    <Compile Include="Script\Dania Defence Script\GUI\LossUI.cs" />
+    <Compile Include="Script\Dania Defence Script\GUI\StartInfo.cs" />
     <Compile Include="Script\Dania Defence Script\GUI\TowerButton_GUI.cs" />
     <Compile Include="Script\Dania Defence Script\GUI\UnitHealthBar_GUI.cs" />
+    <Compile Include="Script\Dania Defence Script\GUI\WinUI.cs" />
     <Compile Include="Script\Dania Defence Script\Set Towers\SetTowers.cs" />
     <Compile Include="Script\Dania Defence Script\Tile Folder\Spawner.cs" />
     <Compile Include="Script\Dania Defence Script\Tile Folder\Tile.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Script\Dania Defence Script\Unit\Unit_Kasper.cs" />
     <Compile Include="Script\Dania Defence Script\Unit\Unit_Marius.cs" />
     <Compile Include="Script\Dania Defence Script\World Editor\WorldEditor.cs" />
+    <Compile Include="Script\Dania Defence Script\_Astar\Astar_Tower_Check.cs" />
     <Compile Include="Script\Dania Defence Script\_Astar\ThreadAstar.cs" />
     <Compile Include="Script\Dania Defence Script\_Astar\_Astar_Test.cs" />
     <Compile Include="Script\Dania Defence Script\_Astar\_Astar_Test_For_unit.cs" />

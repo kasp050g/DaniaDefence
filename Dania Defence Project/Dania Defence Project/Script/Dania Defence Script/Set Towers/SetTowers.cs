@@ -15,12 +15,14 @@ namespace Dania_Defence_Project
         List<Tower> towers = new List<Tower>();
         Tower currentTower;
         PickTowerType pickTowerType;
+        
 
         Kasper_Scene kasper_Scene;
 
         public GameObject MouseTile { get => mouseTile; set => mouseTile = value; }
         public int SizeOfTile { get => sizeOfTile; set => sizeOfTile = value; }
         public List<Tower> Towers { get => towers; set => towers = value; }
+
 
         public SetTowers(int _sizeOfTile,Kasper_Scene _kasper_Scene)
         {
@@ -45,7 +47,20 @@ namespace Dania_Defence_Project
             ShowTileOnMouse();
             SelectTileOnClick();
         }
+        public bool CheckIfItGotAWay(Tile clickOnTile)
+        {
+            List<Tile> tiles = new List<Tile>();
 
+            foreach (GameObject item in myScene.GameObjects)
+            {
+                if (item is Tile == true)
+                {
+                    tiles.Add(item as Tile);
+                }
+            }
+
+            return Astar_Tower_Check.GetAstarWay(clickOnTile, tiles);
+        }
         public void SelectTileOnClick()
         {
             if (Input.GetMouseButtonDown(MyMouseButtonsEnum.LeftButton) && !MyScene.IsMouseOverUI)
@@ -54,7 +69,7 @@ namespace Dania_Defence_Project
                 {
                     if (item is Tile == true && item.Transform.Position == mouseTile.Transform.Position && (item as Tile).TileType == TileTypeEnum.Empty)
                     {
-                        if (CheckTowerCost(pickTowerType))
+                        if (CheckTowerCost(pickTowerType) && CheckIfItGotAWay((item as Tile)))
                         {
                             (item as Tile).ChangeTile(TileTypeEnum.Tower);
                             Destroy((item as Tile).Tower);
@@ -67,16 +82,16 @@ namespace Dania_Defence_Project
                     }
                 }
             }
-            if (Input.GetMouseButtonDown(MyMouseButtonsEnum.RightButton) && !MyScene.IsMouseOverUI)
-            {
-                foreach (GameObject item in myScene.GameObjects)
-                {
-                    if (item is Tile == true && item.Transform.Position == mouseTile.Transform.Position && (item as Tile).TileType == TileTypeEnum.Tower)
-                    {
-                        (item as Tile).ChangeTile(TileTypeEnum.Empty);
-                    }
-                }
-            }
+            //if (Input.GetMouseButtonDown(MyMouseButtonsEnum.RightButton) && !MyScene.IsMouseOverUI)
+            //{
+            //    foreach (GameObject item in myScene.GameObjects)
+            //    {
+            //        if (item is Tile == true && item.Transform.Position == mouseTile.Transform.Position && (item as Tile).TileType == TileTypeEnum.Tower)
+            //        {
+            //            (item as Tile).ChangeTile(TileTypeEnum.Empty);
+            //        }
+            //    }
+            //}
         }
         public void ShowTileOnMouse()
         {
